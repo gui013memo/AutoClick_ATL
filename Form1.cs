@@ -58,6 +58,8 @@ namespace Auto_click_atlas_2
 
         /*      GLOBAL VARIABLES       */
 
+        // TESTE PARA O GIT 
+
 
         // MEMORIAS
 
