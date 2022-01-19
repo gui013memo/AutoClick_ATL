@@ -42,18 +42,18 @@ namespace Auto_click_atlas_2
         public static extern int SetCursorPos(int x, int y);
 
 
-        private const int MOUSEEVENTF_MOVE = 0x0001; /* mouse move */
+        //private const int MOUSEEVENTF_MOVE = 0x0001; /* mouse move */
         private const int MOUSEEVENTF_LEFTDOWN = 0x0002; /* left button down */
         private const int MOUSEEVENTF_LEFTUP = 0x0004; /* left button up */
         private const int MOUSEEVENTF_RIGHTDOWN = 0x0008; /* right button down */
         private const int MOUSEEVENTF_RIGHTUP = 0x0010; /* right button up */
-        private const int MOUSEEVENTF_MIDDLEDOWN = 0x0020; /* middle button down */
-        private const int MOUSEEVENTF_MIDDLEUP = 0x0040; /* middle button up */
-        private const int MOUSEEVENTF_XDOWN = 0x0080; /* x button down */
-        private const int MOUSEEVENTF_XUP = 0x0100; /* x button down */
-        private const int MOUSEEVENTF_WHEEL = 0x0800; /* wheel button rolled */
-        private const int MOUSEEVENTF_VIRTUALDESK = 0x4000; /* map to entire virtual desktop */
-        private const int MOUSEEVENTF_ABSOLUTE = 0x8000; /* absolute move */
+        //private const int MOUSEEVENTF_MIDDLEDOWN = 0x0020; /* middle button down */
+        //private const int MOUSEEVENTF_MIDDLEUP = 0x0040; /* middle button up */
+        //private const int MOUSEEVENTF_XDOWN = 0x0080; /* x button down */
+        //private const int MOUSEEVENTF_XUP = 0x0100; /* x button down */
+        //private const int MOUSEEVENTF_WHEEL = 0x0800; /* wheel button rolled */
+        //private const int MOUSEEVENTF_VIRTUALDESK = 0x4000; /* map to entire virtual desktop */
+        //private const int MOUSEEVENTF_ABSOLUTE = 0x8000; /* absolute move */
 
 
         /*      GLOBAL VARIABLES       */
@@ -78,7 +78,6 @@ namespace Auto_click_atlas_2
         // MOUSE
 
         short x, y;
-        short clicksQuantity;
 
 
         //GENERAL PURPOUSE
@@ -115,7 +114,7 @@ namespace Auto_click_atlas_2
 
             m_Events.MouseMove += M_Events_MouseMove;
             m_Events.MouseClick += M_Events_MouseClick;
-            m_Events.MouseUpExt += M_Events_MouseClickExt;
+            //m_Events.MouseUpExt += M_Events_MouseClickExt;
 
             m_Events.KeyPress += M_Events_KeyPress;
             m_Events.MouseDownExt += M_Events_MouseDownExt;
@@ -137,7 +136,7 @@ namespace Auto_click_atlas_2
             if (m_Events == null) return;
             m_Events.MouseMove -= M_Events_MouseMove;
             m_Events.MouseClick -= M_Events_MouseClick;
-            m_Events.MouseUpExt -= M_Events_MouseClickExt;
+            //m_Events.MouseUpExt -= M_Events_MouseClickExt;
             m_Events.KeyPress -= M_Events_KeyPress;
             m_Events.MouseDownExt -= M_Events_MouseDownExt;
 
@@ -175,8 +174,8 @@ namespace Auto_click_atlas_2
                     instructionQuantity++;
                     lb_instructions_quantity.Text = instructionQuantity.ToString();
 
-                    tb_instrucoes.Text += string.Format(" Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
-                    InstructionList(x, y, '¬');
+                    tb_instrucoes.Text += string.Format("Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
+                    setInstructionList(x, y, '¬');
 
                 }
                 else if (e.Button == MouseButtons.Right)
@@ -184,30 +183,30 @@ namespace Auto_click_atlas_2
                     instructionQuantity++;
                     lb_instructions_quantity.Text = instructionQuantity.ToString();
 
-                    tb_instrucoes.Text += string.Format(" Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
-                    InstructionList(x, y, '¨');
+                    tb_instrucoes.Text += string.Format("Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
+                    setInstructionList(x, y, '¨');
                 }
 
             }
         }
 
-        private void M_Events_MouseClickExt(object sender, MouseEventExtArgs e)
-        {
-            //if (!e.IsMouseButtonDown)
-            //{
-            //    tb_instrucoes.Text = string.Format("X = {0} - Y = {1} \r\n", e.X, e.Y);
-            //    tb_instrucoes.Text += "APERTADO!";
-            //    //System.Threading.Thread.Sleep(400);
-            //}
+        //private void M_Events_MouseClickExt(object sender, MouseEventExtArgs e)
+        //{
+        //if (!e.IsMouseButtonDown)
+        //{
+        //    tb_instrucoes.Text = string.Format("X = {0} - Y = {1} \r\n", e.X, e.Y);
+        //    tb_instrucoes.Text += "APERTADO!";
+        //    //System.Threading.Thread.Sleep(400);
+        //}
 
-            //if (e.IsMouseButtonUp)
-            //{
-            //    tb_instrucoes.Text += "SOLTO!!";
-            //    //System.Threading.Thread.Sleep(400);
-            //}
+        //if (e.IsMouseButtonUp)
+        //{
+        //    tb_instrucoes.Text += "SOLTO!!";
+        //    //System.Threading.Thread.Sleep(400);
+        //}
 
 
-        }
+        //}
 
 
         private void M_Events_KeyPress(object sender, KeyPressEventArgs e)
@@ -406,7 +405,7 @@ namespace Auto_click_atlas_2
             }
         }
 
-        private void InstructionList(short x, short y, char key)
+        private void setInstructionList(short x, short y, char key)
         {
             Instrucoes[instructionNumber] = new Instrucoes(x, y, key);
             instructionNumber++;
@@ -430,7 +429,7 @@ namespace Auto_click_atlas_2
             if (cb_enable_btns.Checked)
             {
                 tb_instrucoes.Text += string.Format(" Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
-                InstructionList(x, y, '¬');
+                setInstructionList(x, y, '¬');
             }
 
         }
@@ -440,7 +439,7 @@ namespace Auto_click_atlas_2
             if (cb_enable_btns.Checked)
             {
                 tb_instrucoes.Text += string.Format(" Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
-                InstructionList(x, y, '¨');
+                setInstructionList(x, y, '¨');
             }
 
         }
@@ -450,7 +449,7 @@ namespace Auto_click_atlas_2
             if (cb_enable_btns.Checked && f_btn_record)
             {
                 tb_instrucoes.Text += "*** Pausa ***\r\n";
-                InstructionList(0, 0, '$');
+                setInstructionList(0, 0, '$');
             }
 
         }
@@ -459,7 +458,7 @@ namespace Auto_click_atlas_2
         {
             if (cb_enable_btns.Checked && f_btn_record)
             {
-                InstructionList(x, y, 's');
+                setInstructionList(x, y, 's');
                 tb_instrucoes.Text += "### SELECT ###\r\n";
 
 
@@ -477,7 +476,8 @@ namespace Auto_click_atlas_2
                 {
                     f_btn_record = true;
                     btn_Record.BackColor = Color.Red;
-                    btn_Record.Text = "RECORDING";
+                    btn_Record.ForeColor = Color.White;
+                    btn_Record.Text = "REC (G)";
                 }
 
                 else if (recordState > 1)
@@ -485,7 +485,8 @@ namespace Auto_click_atlas_2
                     f_btn_record = false;
                     recordState = 0;
                     btn_Record.BackColor = Color.White;
-                    btn_Record.Text = "RECORD (G)";
+                    btn_Record.ForeColor = Color.Black;
+                    btn_Record.Text = "REC (G)";
                 }
             }
 
@@ -599,11 +600,15 @@ namespace Auto_click_atlas_2
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            tb_instrucoes.Clear();
-            Array.Clear(Instrucoes, 0, Instrucoes.Length);
+            tb_instrucoes.Text = tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
 
-            instructionQuantity = 0;
+
+            //Array.Clear(Instrucoes, 0, Instrucoes.Length);
+            Array.Clear(Instrucoes, instructionNumber, 1);
+
+
+            instructionQuantity--;
             lb_instructions_quantity.Text = instructionQuantity.ToString();
         }
 
@@ -623,10 +628,10 @@ namespace Auto_click_atlas_2
         {
             this.ActiveControl = null;  //Para tirar o foco do cb e nao ser checado pela tecla SPACE
 
-            recordState = 0;
-            f_btn_record = false;
-            btn_Record.BackColor = Color.White;
-            btn_Record.Text = "RECORD (G)";
+            //recordState = 0;
+            //f_btn_record = false;
+            //btn_Record.BackColor = Color.White;
+            //btn_Record.Text = "RECORD (G)";
         }
 
         /* ---- CHECK BOX END ---- */

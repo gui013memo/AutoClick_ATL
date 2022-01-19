@@ -54,14 +54,22 @@ namespace Auto_click_atlas_2
             this.lb_instructions_quantity = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gb_pause = new System.Windows.Forms.GroupBox();
+            this.lb_currentMode = new System.Windows.Forms.Label();
+            this.lb_modo = new System.Windows.Forms.Label();
             this.btn_Continue = new System.Windows.Forms.Button();
             this.cb_duplo = new System.Windows.Forms.CheckBox();
             this.lb_Duplo = new System.Windows.Forms.Label();
             this.btn_Pause = new System.Windows.Forms.Button();
             this.btn_Select = new System.Windows.Forms.Button();
-            this.lb_lista = new System.Windows.Forms.Label();
-            this.lb_currentLista = new System.Windows.Forms.Label();
+            this.lb_multiInstrucoes_2 = new System.Windows.Forms.Label();
+            this.btn_modo_1 = new System.Windows.Forms.Button();
+            this.btn_modo_2 = new System.Windows.Forms.Button();
+            this.btn_modo_3 = new System.Windows.Forms.Button();
+            this.btn_modo_4 = new System.Windows.Forms.Button();
+            this.btn_modo_5 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gb_pause.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_Left
@@ -116,7 +124,7 @@ namespace Auto_click_atlas_2
             // 
             this.tb_repete.Enabled = false;
             this.tb_repete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tb_repete.Location = new System.Drawing.Point(310, 566);
+            this.tb_repete.Location = new System.Drawing.Point(455, 565);
             this.tb_repete.Name = "tb_repete";
             this.tb_repete.Size = new System.Drawing.Size(51, 23);
             this.tb_repete.TabIndex = 7;
@@ -127,7 +135,7 @@ namespace Auto_click_atlas_2
             // cb_repete
             // 
             this.cb_repete.AutoSize = true;
-            this.cb_repete.Location = new System.Drawing.Point(310, 541);
+            this.cb_repete.Location = new System.Drawing.Point(455, 540);
             this.cb_repete.Name = "cb_repete";
             this.cb_repete.Size = new System.Drawing.Size(63, 19);
             this.cb_repete.TabIndex = 8;
@@ -230,7 +238,7 @@ namespace Auto_click_atlas_2
             // tb_interval
             // 
             this.tb_interval.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tb_interval.Location = new System.Drawing.Point(310, 512);
+            this.tb_interval.Location = new System.Drawing.Point(455, 511);
             this.tb_interval.Name = "tb_interval";
             this.tb_interval.Size = new System.Drawing.Size(51, 23);
             this.tb_interval.TabIndex = 17;
@@ -242,7 +250,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_interval.AutoSize = true;
             this.lb_interval.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_interval.Location = new System.Drawing.Point(308, 494);
+            this.lb_interval.Location = new System.Drawing.Point(453, 493);
             this.lb_interval.Name = "lb_interval";
             this.lb_interval.Size = new System.Drawing.Size(53, 15);
             this.lb_interval.TabIndex = 18;
@@ -252,7 +260,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_acoes.AutoSize = true;
             this.lb_acoes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_acoes.Location = new System.Drawing.Point(232, 120);
+            this.lb_acoes.Location = new System.Drawing.Point(232, 108);
             this.lb_acoes.Name = "lb_acoes";
             this.lb_acoes.Size = new System.Drawing.Size(54, 21);
             this.lb_acoes.TabIndex = 20;
@@ -277,7 +285,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_stats.AutoSize = true;
             this.lb_stats.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_stats.Location = new System.Drawing.Point(241, 4);
+            this.lb_stats.Location = new System.Drawing.Point(312, 4);
             this.lb_stats.Name = "lb_stats";
             this.lb_stats.Size = new System.Drawing.Size(73, 30);
             this.lb_stats.TabIndex = 22;
@@ -287,7 +295,7 @@ namespace Auto_click_atlas_2
             // 
             this.tb_restante.Enabled = false;
             this.tb_restante.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tb_restante.Location = new System.Drawing.Point(178, 58);
+            this.tb_restante.Location = new System.Drawing.Point(232, 61);
             this.tb_restante.Name = "tb_restante";
             this.tb_restante.ReadOnly = true;
             this.tb_restante.Size = new System.Drawing.Size(70, 35);
@@ -299,7 +307,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_restante.AutoSize = true;
             this.lb_restante.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_restante.Location = new System.Drawing.Point(178, 34);
+            this.lb_restante.Location = new System.Drawing.Point(232, 37);
             this.lb_restante.Name = "lb_restante";
             this.lb_restante.Size = new System.Drawing.Size(70, 21);
             this.lb_restante.TabIndex = 24;
@@ -311,7 +319,7 @@ namespace Auto_click_atlas_2
             this.cb_enable_btns.BackColor = System.Drawing.Color.Gold;
             this.cb_enable_btns.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.cb_enable_btns.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cb_enable_btns.Location = new System.Drawing.Point(160, 262);
+            this.cb_enable_btns.Location = new System.Drawing.Point(244, 277);
             this.cb_enable_btns.Name = "cb_enable_btns";
             this.cb_enable_btns.Size = new System.Drawing.Size(205, 25);
             this.cb_enable_btns.TabIndex = 27;
@@ -333,7 +341,7 @@ namespace Auto_click_atlas_2
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(292, 120);
+            this.label1.Location = new System.Drawing.Point(292, 108);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 21);
             this.label1.TabIndex = 30;
@@ -342,8 +350,6 @@ namespace Auto_click_atlas_2
             // gb_pause
             // 
             this.gb_pause.BackColor = System.Drawing.Color.White;
-            this.gb_pause.Controls.Add(this.lb_currentLista);
-            this.gb_pause.Controls.Add(this.lb_lista);
             this.gb_pause.Controls.Add(this.btn_Continue);
             this.gb_pause.Controls.Add(this.tb_restante);
             this.gb_pause.Controls.Add(this.label1);
@@ -353,16 +359,35 @@ namespace Auto_click_atlas_2
             this.gb_pause.Controls.Add(this.lb_instructions_quantity);
             this.gb_pause.Controls.Add(this.lb_stats);
             this.gb_pause.Controls.Add(this.tb_X);
-            this.gb_pause.Controls.Add(this.cb_enable_btns);
             this.gb_pause.Controls.Add(this.tb_Y);
             this.gb_pause.Controls.Add(this.lb_acoes);
             this.gb_pause.Controls.Add(this.lb_X);
             this.gb_pause.Controls.Add(this.lb_Y);
             this.gb_pause.Location = new System.Drawing.Point(12, 12);
             this.gb_pause.Name = "gb_pause";
-            this.gb_pause.Size = new System.Drawing.Size(365, 290);
+            this.gb_pause.Size = new System.Drawing.Size(385, 290);
             this.gb_pause.TabIndex = 31;
             this.gb_pause.TabStop = false;
+            // 
+            // lb_currentMode
+            // 
+            this.lb_currentMode.AutoSize = true;
+            this.lb_currentMode.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_currentMode.Location = new System.Drawing.Point(36, 82);
+            this.lb_currentMode.Name = "lb_currentMode";
+            this.lb_currentMode.Size = new System.Drawing.Size(46, 54);
+            this.lb_currentMode.TabIndex = 34;
+            this.lb_currentMode.Text = "0";
+            // 
+            // lb_modo
+            // 
+            this.lb_modo.AutoSize = true;
+            this.lb_modo.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_modo.Location = new System.Drawing.Point(10, 11);
+            this.lb_modo.Name = "lb_modo";
+            this.lb_modo.Size = new System.Drawing.Size(99, 41);
+            this.lb_modo.TabIndex = 33;
+            this.lb_modo.Text = "Modo";
             // 
             // btn_Continue
             // 
@@ -375,7 +400,7 @@ namespace Auto_click_atlas_2
             this.btn_Continue.ForeColor = System.Drawing.Color.Black;
             this.btn_Continue.Location = new System.Drawing.Point(187, 149);
             this.btn_Continue.Name = "btn_Continue";
-            this.btn_Continue.Size = new System.Drawing.Size(172, 104);
+            this.btn_Continue.Size = new System.Drawing.Size(187, 104);
             this.btn_Continue.TabIndex = 32;
             this.btn_Continue.Text = "Continuar (C)";
             this.btn_Continue.UseVisualStyleBackColor = false;
@@ -384,7 +409,7 @@ namespace Auto_click_atlas_2
             // cb_duplo
             // 
             this.cb_duplo.AutoSize = true;
-            this.cb_duplo.Location = new System.Drawing.Point(33, 546);
+            this.cb_duplo.Location = new System.Drawing.Point(48, 535);
             this.cb_duplo.Name = "cb_duplo";
             this.cb_duplo.Size = new System.Drawing.Size(15, 14);
             this.cb_duplo.TabIndex = 32;
@@ -394,11 +419,11 @@ namespace Auto_click_atlas_2
             // 
             this.lb_Duplo.AutoSize = true;
             this.lb_Duplo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_Duplo.Location = new System.Drawing.Point(12, 522);
+            this.lb_Duplo.Location = new System.Drawing.Point(29, 493);
             this.lb_Duplo.Name = "lb_Duplo";
-            this.lb_Duplo.Size = new System.Drawing.Size(57, 21);
+            this.lb_Duplo.Size = new System.Drawing.Size(55, 21);
             this.lb_Duplo.TabIndex = 33;
-            this.lb_Duplo.Text = "Duplo";
+            this.lb_Duplo.Text = "Multi ";
             // 
             // btn_Pause
             // 
@@ -428,25 +453,91 @@ namespace Auto_click_atlas_2
             this.btn_Select.UseVisualStyleBackColor = false;
             this.btn_Select.Click += new System.EventHandler(this.btn_Select_Click);
             // 
-            // lb_lista
+            // lb_multiInstrucoes_2
             // 
-            this.lb_lista.AutoSize = true;
-            this.lb_lista.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_lista.Location = new System.Drawing.Point(270, 36);
-            this.lb_lista.Name = "lb_lista";
-            this.lb_lista.Size = new System.Drawing.Size(62, 25);
-            this.lb_lista.TabIndex = 33;
-            this.lb_lista.Text = "Modo";
+            this.lb_multiInstrucoes_2.AutoSize = true;
+            this.lb_multiInstrucoes_2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_multiInstrucoes_2.Location = new System.Drawing.Point(15, 511);
+            this.lb_multiInstrucoes_2.Name = "lb_multiInstrucoes_2";
+            this.lb_multiInstrucoes_2.Size = new System.Drawing.Size(88, 21);
+            this.lb_multiInstrucoes_2.TabIndex = 36;
+            this.lb_multiInstrucoes_2.Text = "Instruções";
             // 
-            // lb_currentLista
+            // btn_modo_1
             // 
-            this.lb_currentLista.AutoSize = true;
-            this.lb_currentLista.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_currentLista.Location = new System.Drawing.Point(289, 61);
-            this.lb_currentLista.Name = "lb_currentLista";
-            this.lb_currentLista.Size = new System.Drawing.Size(25, 30);
-            this.lb_currentLista.TabIndex = 34;
-            this.lb_currentLista.Text = "0";
+            this.btn_modo_1.BackColor = System.Drawing.Color.White;
+            this.btn_modo_1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_modo_1.FlatAppearance.BorderSize = 2;
+            this.btn_modo_1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_modo_1.Location = new System.Drawing.Point(383, 308);
+            this.btn_modo_1.Name = "btn_modo_1";
+            this.btn_modo_1.Size = new System.Drawing.Size(154, 28);
+            this.btn_modo_1.TabIndex = 37;
+            this.btn_modo_1.Text = "Modo 1 (6)";
+            this.btn_modo_1.UseVisualStyleBackColor = false;
+            // 
+            // btn_modo_2
+            // 
+            this.btn_modo_2.BackColor = System.Drawing.Color.White;
+            this.btn_modo_2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_modo_2.FlatAppearance.BorderSize = 2;
+            this.btn_modo_2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_modo_2.Location = new System.Drawing.Point(383, 344);
+            this.btn_modo_2.Name = "btn_modo_2";
+            this.btn_modo_2.Size = new System.Drawing.Size(154, 28);
+            this.btn_modo_2.TabIndex = 38;
+            this.btn_modo_2.Text = "Modo 2 (7)";
+            this.btn_modo_2.UseVisualStyleBackColor = false;
+            // 
+            // btn_modo_3
+            // 
+            this.btn_modo_3.BackColor = System.Drawing.Color.White;
+            this.btn_modo_3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_modo_3.FlatAppearance.BorderSize = 2;
+            this.btn_modo_3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_modo_3.Location = new System.Drawing.Point(383, 378);
+            this.btn_modo_3.Name = "btn_modo_3";
+            this.btn_modo_3.Size = new System.Drawing.Size(154, 28);
+            this.btn_modo_3.TabIndex = 39;
+            this.btn_modo_3.Text = "Modo 3 (8)";
+            this.btn_modo_3.UseVisualStyleBackColor = false;
+            // 
+            // btn_modo_4
+            // 
+            this.btn_modo_4.BackColor = System.Drawing.Color.White;
+            this.btn_modo_4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_modo_4.FlatAppearance.BorderSize = 2;
+            this.btn_modo_4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_modo_4.Location = new System.Drawing.Point(383, 412);
+            this.btn_modo_4.Name = "btn_modo_4";
+            this.btn_modo_4.Size = new System.Drawing.Size(154, 28);
+            this.btn_modo_4.TabIndex = 40;
+            this.btn_modo_4.Text = "Modo 4 (9)";
+            this.btn_modo_4.UseVisualStyleBackColor = false;
+            // 
+            // btn_modo_5
+            // 
+            this.btn_modo_5.BackColor = System.Drawing.Color.White;
+            this.btn_modo_5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_modo_5.FlatAppearance.BorderSize = 2;
+            this.btn_modo_5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_modo_5.Location = new System.Drawing.Point(383, 446);
+            this.btn_modo_5.Name = "btn_modo_5";
+            this.btn_modo_5.Size = new System.Drawing.Size(154, 28);
+            this.btn_modo_5.TabIndex = 41;
+            this.btn_modo_5.Text = "Modo 5 (0)";
+            this.btn_modo_5.UseVisualStyleBackColor = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.Controls.Add(this.lb_modo);
+            this.groupBox1.Controls.Add(this.lb_currentMode);
+            this.groupBox1.Location = new System.Drawing.Point(403, 62);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(115, 203);
+            this.groupBox1.TabIndex = 42;
+            this.groupBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -455,7 +546,15 @@ namespace Auto_click_atlas_2
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(389, 601);
+            this.ClientSize = new System.Drawing.Size(540, 601);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btn_modo_5);
+            this.Controls.Add(this.btn_modo_4);
+            this.Controls.Add(this.btn_modo_3);
+            this.Controls.Add(this.btn_modo_2);
+            this.Controls.Add(this.btn_modo_1);
+            this.Controls.Add(this.lb_multiInstrucoes_2);
+            this.Controls.Add(this.cb_enable_btns);
             this.Controls.Add(this.btn_Select);
             this.Controls.Add(this.btn_Pause);
             this.Controls.Add(this.lb_Duplo);
@@ -482,6 +581,8 @@ namespace Auto_click_atlas_2
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gb_pause.ResumeLayout(false);
             this.gb_pause.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,9 +622,16 @@ namespace Auto_click_atlas_2
         private System.Windows.Forms.CheckBox cb_duplo;
         private System.Windows.Forms.Label lb_Duplo;
         private System.Windows.Forms.Button btn_Pause;
-        private System.Windows.Forms.Label lb_currentLista;
-        private System.Windows.Forms.Label lb_lista;
+        private System.Windows.Forms.Label lb_currentMode;
+        private System.Windows.Forms.Label lb_modo;
         private System.Windows.Forms.Button btn_Select;
+        private System.Windows.Forms.Label lb_multiInstrucoes_2;
+        private System.Windows.Forms.Button btn_modo_1;
+        private System.Windows.Forms.Button btn_modo_2;
+        private System.Windows.Forms.Button btn_modo_3;
+        private System.Windows.Forms.Button btn_modo_4;
+        private System.Windows.Forms.Button btn_modo_5;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
