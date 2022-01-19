@@ -54,10 +54,10 @@ namespace Auto_click_atlas_2
             this.lb_instructions_quantity = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gb_pause = new System.Windows.Forms.GroupBox();
+            this.btn_Continue = new System.Windows.Forms.Button();
             this.lb_currentMode = new System.Windows.Forms.Label();
             this.lb_modo = new System.Windows.Forms.Label();
-            this.btn_Continue = new System.Windows.Forms.Button();
-            this.cb_duplo = new System.Windows.Forms.CheckBox();
+            this.cb_multi_Instructions = new System.Windows.Forms.CheckBox();
             this.lb_Duplo = new System.Windows.Forms.Label();
             this.btn_Pause = new System.Windows.Forms.Button();
             this.btn_Select = new System.Windows.Forms.Button();
@@ -369,6 +369,23 @@ namespace Auto_click_atlas_2
             this.gb_pause.TabIndex = 31;
             this.gb_pause.TabStop = false;
             // 
+            // btn_Continue
+            // 
+            this.btn_Continue.BackColor = System.Drawing.Color.LightGray;
+            this.btn_Continue.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_Continue.FlatAppearance.BorderSize = 10;
+            this.btn_Continue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btn_Continue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btn_Continue.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_Continue.ForeColor = System.Drawing.Color.Black;
+            this.btn_Continue.Location = new System.Drawing.Point(187, 149);
+            this.btn_Continue.Name = "btn_Continue";
+            this.btn_Continue.Size = new System.Drawing.Size(187, 104);
+            this.btn_Continue.TabIndex = 32;
+            this.btn_Continue.Text = "Continuar (C)";
+            this.btn_Continue.UseVisualStyleBackColor = false;
+            this.btn_Continue.Click += new System.EventHandler(this.btn_Continue_Click);
+            // 
             // lb_currentMode
             // 
             this.lb_currentMode.AutoSize = true;
@@ -389,31 +406,14 @@ namespace Auto_click_atlas_2
             this.lb_modo.TabIndex = 33;
             this.lb_modo.Text = "Modo";
             // 
-            // btn_Continue
+            // cb_multi_Instructions
             // 
-            this.btn_Continue.BackColor = System.Drawing.Color.LightGray;
-            this.btn_Continue.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_Continue.FlatAppearance.BorderSize = 10;
-            this.btn_Continue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btn_Continue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btn_Continue.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_Continue.ForeColor = System.Drawing.Color.Black;
-            this.btn_Continue.Location = new System.Drawing.Point(187, 149);
-            this.btn_Continue.Name = "btn_Continue";
-            this.btn_Continue.Size = new System.Drawing.Size(187, 104);
-            this.btn_Continue.TabIndex = 32;
-            this.btn_Continue.Text = "Continuar (C)";
-            this.btn_Continue.UseVisualStyleBackColor = false;
-            this.btn_Continue.Click += new System.EventHandler(this.btn_Continue_Click);
-            // 
-            // cb_duplo
-            // 
-            this.cb_duplo.AutoSize = true;
-            this.cb_duplo.Location = new System.Drawing.Point(48, 535);
-            this.cb_duplo.Name = "cb_duplo";
-            this.cb_duplo.Size = new System.Drawing.Size(15, 14);
-            this.cb_duplo.TabIndex = 32;
-            this.cb_duplo.UseVisualStyleBackColor = true;
+            this.cb_multi_Instructions.AutoSize = true;
+            this.cb_multi_Instructions.Location = new System.Drawing.Point(48, 535);
+            this.cb_multi_Instructions.Name = "cb_multi_Instructions";
+            this.cb_multi_Instructions.Size = new System.Drawing.Size(15, 14);
+            this.cb_multi_Instructions.TabIndex = 32;
+            this.cb_multi_Instructions.UseVisualStyleBackColor = true;
             // 
             // lb_Duplo
             // 
@@ -475,6 +475,7 @@ namespace Auto_click_atlas_2
             this.btn_modo_1.TabIndex = 37;
             this.btn_modo_1.Text = "Modo 1 (6)";
             this.btn_modo_1.UseVisualStyleBackColor = false;
+            this.btn_modo_1.Click += new System.EventHandler(this.btn_modo_1_Click);
             // 
             // btn_modo_2
             // 
@@ -488,6 +489,7 @@ namespace Auto_click_atlas_2
             this.btn_modo_2.TabIndex = 38;
             this.btn_modo_2.Text = "Modo 2 (7)";
             this.btn_modo_2.UseVisualStyleBackColor = false;
+            this.btn_modo_2.Click += new System.EventHandler(this.btn_modo_2_Click);
             // 
             // btn_modo_3
             // 
@@ -501,6 +503,7 @@ namespace Auto_click_atlas_2
             this.btn_modo_3.TabIndex = 39;
             this.btn_modo_3.Text = "Modo 3 (8)";
             this.btn_modo_3.UseVisualStyleBackColor = false;
+            this.btn_modo_3.Click += new System.EventHandler(this.btn_modo_3_Click);
             // 
             // btn_modo_4
             // 
@@ -514,6 +517,7 @@ namespace Auto_click_atlas_2
             this.btn_modo_4.TabIndex = 40;
             this.btn_modo_4.Text = "Modo 4 (9)";
             this.btn_modo_4.UseVisualStyleBackColor = false;
+            this.btn_modo_4.Click += new System.EventHandler(this.btn_modo_4_Click);
             // 
             // btn_modo_5
             // 
@@ -527,6 +531,7 @@ namespace Auto_click_atlas_2
             this.btn_modo_5.TabIndex = 41;
             this.btn_modo_5.Text = "Modo 5 (0)";
             this.btn_modo_5.UseVisualStyleBackColor = false;
+            this.btn_modo_5.Click += new System.EventHandler(this.btn_modo_5_Click);
             // 
             // groupBox1
             // 
@@ -558,7 +563,7 @@ namespace Auto_click_atlas_2
             this.Controls.Add(this.btn_Select);
             this.Controls.Add(this.btn_Pause);
             this.Controls.Add(this.lb_Duplo);
-            this.Controls.Add(this.cb_duplo);
+            this.Controls.Add(this.cb_multi_Instructions);
             this.Controls.Add(this.gb_pause);
             this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.btn_Stop);
@@ -619,7 +624,7 @@ namespace Auto_click_atlas_2
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gb_pause;
         private System.Windows.Forms.Button btn_Continue;
-        private System.Windows.Forms.CheckBox cb_duplo;
+        private System.Windows.Forms.CheckBox cb_multi_Instructions;
         private System.Windows.Forms.Label lb_Duplo;
         private System.Windows.Forms.Button btn_Pause;
         private System.Windows.Forms.Label lb_currentMode;

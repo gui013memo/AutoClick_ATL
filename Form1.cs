@@ -84,14 +84,18 @@ namespace Auto_click_atlas_2
         short interval = 0;
         short repeticoes = 0;
         short restante = 0;
+        byte f_mode = 0;
 
+        // Instructions
 
         byte instructionQuantity = 0;
         byte instructionNumber = 0;
-        Instrucoes[] Instrucoes = new Instrucoes[50];
-
-
-
+        Instrucoes[] Instrucoes_Global = new Instrucoes[50];
+        Instrucoes[] Instrucoes_1 = new Instrucoes[50];
+        Instrucoes[] Instrucoes_2 = new Instrucoes[50];
+        Instrucoes[] Instrucoes_3 = new Instrucoes[50];
+        Instrucoes[] Instrucoes_4 = new Instrucoes[50];
+        Instrucoes[] Instrucoes_5 = new Instrucoes[50];
 
         /*      GLOBAL VARIABLES       */
 
@@ -99,6 +103,9 @@ namespace Auto_click_atlas_2
         {
             InitializeComponent();
         }
+
+
+
 
         /*      ========== KeyMouseHook - functions ==========     */
 
@@ -142,8 +149,127 @@ namespace Auto_click_atlas_2
 
             m_Events.Dispose();
             m_Events = null;
+
         }
 
+        public void Perform_Click(int X, int Y, char Key)
+        {
+
+
+            SetCursorPos(X, Y);
+
+            if (Key == '¬')
+            {
+                mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y, 0, 0);
+                System.Threading.Thread.Sleep(100);
+                mouse_event(MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+
+                System.Threading.Thread.Sleep(interval);
+
+            }
+            else if (Key == '¨')
+            {
+                mouse_event(MOUSEEVENTF_RIGHTDOWN, X, Y, 2, 0);
+                System.Threading.Thread.Sleep(100);
+                mouse_event(MOUSEEVENTF_RIGHTUP, X, Y, 2, 0);
+
+                System.Threading.Thread.Sleep(interval);
+
+            }
+            else if (Key == '$')
+            {
+
+                gb_pause.BackColor = Color.Red;
+                f_pause = true;
+
+                while (f_pause)
+                {
+                    gb_pause.BackColor = Color.Red;
+                    System.Threading.Thread.Sleep(100);
+                    gb_pause.BackColor = Color.White;
+                    System.Threading.Thread.Sleep(100);
+                }
+
+
+
+                //while(btn_Continue.Focused != true)
+                //{
+                //    gb_pause.BackColor = Color.Red;
+                //}
+
+                //gb_pause.BackColor = Color.White;
+            }
+
+
+
+
+        }
+
+        private void Stop_Execution()
+        {
+
+            stopState++;
+
+            if (stopState == 1)
+            {
+                f_stop = true;
+                btn_Stop.BackColor = Color.Yellow;
+                btn_Stop.Text = "TRAVADO!";
+            }
+            else if (stopState == 2)
+            {
+                f_stop = false;
+                stopState = 0;
+                btn_Stop.BackColor = Color.Red;
+                btn_Stop.Text = "Interromper (Space)";
+
+            }
+        }
+
+        private void setInstructionList(short x, short y, char key)
+        {
+            switch (f_mode)
+            {
+                case 0:
+                    Instrucoes_Global[instructionNumber] = new Instrucoes(x, y, key);
+                    instructionNumber++;
+                    break;
+                case 1:
+                    Instrucoes_1[instructionNumber] = new Instrucoes(x, y, key);
+                    instructionNumber++;
+                    break;
+                case 2:
+                    Instrucoes_2[instructionNumber] = new Instrucoes(x, y, key);
+                    instructionNumber++;
+                    break;
+                case 3:
+                    Instrucoes_3[instructionNumber] = new Instrucoes(x, y, key);
+                    instructionNumber++;
+                    break;
+                case 4:
+                    Instrucoes_4[instructionNumber] = new Instrucoes(x, y, key);
+                    instructionNumber++;
+                    break;
+                case 5:
+                    Instrucoes_5[instructionNumber] = new Instrucoes(x, y, key);
+                    instructionNumber++;
+                    break;
+            }
+
+
+
+            //OverfloW
+            if (instructionNumber > 50)
+            {
+                btn_Record.PerformClick();
+                instructionNumber = 0;
+                btn_Clear.PerformClick();
+                MessageBox.Show(new Form { TopMost = true }, "O MAXIMO DE 50 INSTRUCOES FOI ATINGIDO, A LISTA FOI REDEFINIDA!");
+
+            }
+
+
+        }
 
 
         // 
@@ -215,34 +341,51 @@ namespace Auto_click_atlas_2
             //if (e.KeyChar == 27 )                              <-- ***Fecha app com "ESC"***
             //  System.Windows.Forms.Application.ExitThread();
 
-            if (cb_enable_btns.Checked == true)
+            if (cb_enable_btns.Checked)
             {
-                {// TESTE DA SELECAO
-                    if (e.KeyChar == 'q')
-                    {
+                //{// TESTE DA SELECAO
+                //    if (e.KeyChar == 'q')
+                //    {
 
-                        mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-                    }
+                //        mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
+                //    }
 
-                    if (e.KeyChar == 'w')
-                    {
+                //    if (e.KeyChar == 'w')
+                //    {
 
-                        mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-                    }
-                }
+                //        mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+                //    }
+                //}
+
+
+                //Gera modo 1 
+                if (e.KeyChar == '6')
+                    btn_modo_1.PerformClick();
+                //Gera modo 2
+                if (e.KeyChar == '7')
+                    btn_modo_2.PerformClick();
+                //Gera modo 3
+                if (e.KeyChar == '8')
+                    btn_modo_3.PerformClick();
+                //Gera modo 4
+                if (e.KeyChar == '9')
+                    btn_modo_4.PerformClick();
+                //Gera modo 5
+                if (e.KeyChar == '0')
+                    btn_modo_5.PerformClick();
 
 
                 //Click Esquerdo
                 if (e.KeyChar == 'e' || e.KeyChar == 'E')
-                {
                     btn_Left.PerformClick();
-                }
+
 
                 //Click Direito
                 if (e.KeyChar == 'd' || e.KeyChar == 'D')
                 {
                     btn_Right.PerformClick();
                 }
+
 
                 //Pause
                 if (e.KeyChar == 'p' || e.KeyChar == 'P')
@@ -329,100 +472,55 @@ namespace Auto_click_atlas_2
 
 
 
-
-
-        public void Perform_Click(int X, int Y, char Key)
-        {
-
-
-            SetCursorPos(X, Y);
-
-            if (Key == '¬')
-            {
-                mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y, 0, 0);
-                System.Threading.Thread.Sleep(100);
-                mouse_event(MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
-
-                System.Threading.Thread.Sleep(interval);
-
-            }
-            else if (Key == '¨')
-            {
-                mouse_event(MOUSEEVENTF_RIGHTDOWN, X, Y, 2, 0);
-                System.Threading.Thread.Sleep(100);
-                mouse_event(MOUSEEVENTF_RIGHTUP, X, Y, 2, 0);
-
-                System.Threading.Thread.Sleep(interval);
-
-            }
-            else if (Key == '$')
-            {
-
-                gb_pause.BackColor = Color.Red;
-                f_pause = true;
-
-                while (f_pause)
-                {
-                    gb_pause.BackColor = Color.Red;
-                    System.Threading.Thread.Sleep(100);
-                    gb_pause.BackColor = Color.White;
-                    System.Threading.Thread.Sleep(100);
-                }
-
-
-
-                //while(btn_Continue.Focused != true)
-                //{
-                //    gb_pause.BackColor = Color.Red;
-                //}
-
-                //gb_pause.BackColor = Color.White;
-            }
-
-
-
-
-        }
-
-        private void Stop_Execution()
-        {
-
-            stopState++;
-
-            if (stopState == 1)
-            {
-                f_stop = true;
-                btn_Stop.BackColor = Color.Yellow;
-                btn_Stop.Text = "TRAVADO!";
-            }
-            else if (stopState == 2)
-            {
-                f_stop = false;
-                stopState = 0;
-                btn_Stop.BackColor = Color.Red;
-                btn_Stop.Text = "Interromper (Space)";
-
-            }
-        }
-
-        private void setInstructionList(short x, short y, char key)
-        {
-            Instrucoes[instructionNumber] = new Instrucoes(x, y, key);
-            instructionNumber++;
-            if (instructionNumber > 50)
-            {
-                btn_Record.PerformClick();
-                instructionNumber = 0;
-                btn_Clear.PerformClick();
-                MessageBox.Show(new Form { TopMost = true }, "O MAXIMO DE 50 INSTRUCOES FOI ATINGIDO, A LISTA FOI REDEFINIDA!");
-
-            }
-
-        }
-
         /* ---- FUNCOES END ----*/
 
         //      ======= Botoes =======
+
+        private void btn_modo_1_Click(object sender, EventArgs e)
+        {
+            if (f_btn_record && cb_multi_Instructions.Checked)
+            {
+                f_mode = 1;
+                instructionNumber = 0;
+            }
+
+        }
+
+        private void btn_modo_2_Click(object sender, EventArgs e)
+        {
+            if (f_btn_record && cb_multi_Instructions.Checked)
+            {
+                f_mode = 2;
+                instructionNumber = 0;
+            }
+        }
+
+        private void btn_modo_3_Click(object sender, EventArgs e)
+        {
+            if (f_btn_record && cb_multi_Instructions.Checked)
+            {
+                f_mode = 3;
+                instructionNumber = 0;
+            }
+        }
+
+        private void btn_modo_4_Click(object sender, EventArgs e)
+        {
+            if (f_btn_record && cb_multi_Instructions.Checked)
+            {
+                f_mode = 4;
+                instructionNumber = 0;
+            }
+        }
+
+        private void btn_modo_5_Click(object sender, EventArgs e)
+        {
+            if (f_btn_record && cb_multi_Instructions.Checked)
+            {
+                f_mode = 5;
+                instructionNumber = 0;
+            }
+        }
 
         private void btn_Left_Click(object sender, EventArgs e)
         {
@@ -533,25 +631,25 @@ namespace Auto_click_atlas_2
             do
             {
 
-                for (int j = 0; j < Instrucoes.Length; j++)
+                for (int j = 0; j < Instrucoes_Global.Length; j++)
                 {
                     if (f_pause != true)
                     {
                         tb_restante.Text = restante.ToString();
                         tb_restante.Refresh();
 
-                        if (Instrucoes[j] != null && f_stop != true)
+                        if (Instrucoes_Global[j] != null && f_stop != true)
                         {
-                            if (Instrucoes[j].Key == 's')
+                            if (Instrucoes_Global[j].Key == 's')
                             {
-                                SetCursorPos(Instrucoes[j - 2].X, Instrucoes[j - 2].Y);
-                                mouse_event(MOUSEEVENTF_LEFTDOWN, Instrucoes[j - 2].X, Instrucoes[j - 2].Y, 0, 0); // Inicia o click 2 posicoes atras no array
-                                SetCursorPos(Instrucoes[j - 1].X, Instrucoes[j - 1].Y);
-                                mouse_event(MOUSEEVENTF_LEFTUP, Instrucoes[j - 2].X, Instrucoes[j - 2].Y, 0, 0);
+                                SetCursorPos(Instrucoes_Global[j - 2].X, Instrucoes_Global[j - 2].Y);
+                                mouse_event(MOUSEEVENTF_LEFTDOWN, Instrucoes_Global[j - 2].X, Instrucoes_Global[j - 2].Y, 0, 0); // Inicia o click 2 posicoes atras no array
+                                SetCursorPos(Instrucoes_Global[j - 1].X, Instrucoes_Global[j - 1].Y);
+                                mouse_event(MOUSEEVENTF_LEFTUP, Instrucoes_Global[j - 2].X, Instrucoes_Global[j - 2].Y, 0, 0);
                             }
                             else
                             {
-                                Perform_Click(Instrucoes[j].X, Instrucoes[j].Y, Instrucoes[j].Key);
+                                Perform_Click(Instrucoes_Global[j].X, Instrucoes_Global[j].Y, Instrucoes_Global[j].Key);
                             }
 
                         }
@@ -581,8 +679,8 @@ namespace Auto_click_atlas_2
             f_Start = false;
 
 
-            if (indicesVazios == Instrucoes.Length)
-                MessageBox.Show(new Form { TopMost = true }, "Não há instrucoes para executar!!");
+            if (indicesVazios == Instrucoes_Global.Length)
+                MessageBox.Show(new Form { TopMost = true }, "Não há Instrucoes_Global para executar!!");
 
         }
     })
@@ -604,8 +702,8 @@ namespace Auto_click_atlas_2
 
 
 
-            //Array.Clear(Instrucoes, 0, Instrucoes.Length);
-            Array.Clear(Instrucoes, instructionNumber, 1);
+            //Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
+            Array.Clear(Instrucoes_Global, instructionNumber, 1);
 
 
             instructionQuantity--;
@@ -680,16 +778,15 @@ namespace Auto_click_atlas_2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //if(cb_multi_Instructions.Checked)
+            //{
+            //    Instrucoes_Global ins
+            //}
+
             Unsubscribe();
             Subscribe(Hook.GlobalEvents());
 
         }
-
-        private void lb_acoes_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
