@@ -97,6 +97,9 @@ namespace Auto_click_atlas_2
         Instrucoes[] Instrucoes_4 = new Instrucoes[50];
         Instrucoes[] Instrucoes_5 = new Instrucoes[50];
 
+
+
+
         /*      GLOBAL VARIABLES       */
 
         public Form1()
@@ -152,7 +155,7 @@ namespace Auto_click_atlas_2
 
         }
 
-        public void Perform_Click(int X, int Y, char Key)
+        public void PerformClick(int X, int Y, char Key)
         {
 
 
@@ -482,6 +485,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 1;
                 instructionNumber = 0;
+                tb_instrucoes.Text += "Inicio modo 1";
             }
 
         }
@@ -492,6 +496,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 2;
                 instructionNumber = 0;
+                tb_instrucoes.Text += "Inicio modo 2";
             }
         }
 
@@ -547,21 +552,21 @@ namespace Auto_click_atlas_2
             if (cb_enable_btns.Checked && f_btn_record)
             {
                 tb_instrucoes.Text += "*** Pausa ***\r\n";
-                setInstructionList(0, 0, '$');
+                setInstructionList(x, y, '$');
             }
 
         }
 
-        private void btn_Select_Click(object sender, EventArgs e)
-        {
-            if (cb_enable_btns.Checked && f_btn_record)
-            {
-                setInstructionList(x, y, 's');
-                tb_instrucoes.Text += "### SELECT ###\r\n";
+        //private void btn_Select_Click(object sender, EventArgs e)
+        //{
+        //    if (cb_enable_btns.Checked && f_btn_record)
+        //    {
+        //        setInstructionList(x, y, 's');
+        //        tb_instrucoes.Text += "### SELECT ###\r\n";
 
 
-            }
-        }
+        //    }
+        //}
 
         private void btn_Record_Click(object sender, EventArgs e)
         {
@@ -621,46 +626,79 @@ namespace Auto_click_atlas_2
 
             //Int16.TryParse(tb_repete.Text, out short repeticoes);
             byte iteracoes = 0;
-            byte indicesVazios = 0;
             restante = repeticoes;
             tb_restante.Text = restante.ToString();
             tb_restante.Refresh();
             restante++;
 
 
+
+            //if (Instrucoes_1[0] == null)
+            //    tb_instrucoes.Text += "Instructions 1 NULO!!!";
+
+
+
+
+
+            tb_instrucoes.Text += "Modo multi!";
+
             do
             {
 
-                for (int j = 0; j < Instrucoes_Global.Length; j++)
+                //Instruction list global
+                for (byte i = 0; i < Instrucoes_Global.Length; i++)
                 {
-                    if (f_pause != true)
-                    {
-                        tb_restante.Text = restante.ToString();
-                        tb_restante.Refresh();
+                    if (Instrucoes_Global[i] == null)
+                        break;
 
-                        if (Instrucoes_Global[j] != null && f_stop != true)
-                        {
-                            if (Instrucoes_Global[j].Key == 's')
-                            {
-                                SetCursorPos(Instrucoes_Global[j - 2].X, Instrucoes_Global[j - 2].Y);
-                                mouse_event(MOUSEEVENTF_LEFTDOWN, Instrucoes_Global[j - 2].X, Instrucoes_Global[j - 2].Y, 0, 0); // Inicia o click 2 posicoes atras no array
-                                SetCursorPos(Instrucoes_Global[j - 1].X, Instrucoes_Global[j - 1].Y);
-                                mouse_event(MOUSEEVENTF_LEFTUP, Instrucoes_Global[j - 2].X, Instrucoes_Global[j - 2].Y, 0, 0);
-                            }
-                            else
-                            {
-                                Perform_Click(Instrucoes_Global[j].X, Instrucoes_Global[j].Y, Instrucoes_Global[j].Key);
-                            }
-
-                        }
-                        else
-                        {
-                            indicesVazios++;
-                        }
-
-                    }
-
+                    PerformClick(Instrucoes_Global[i].X, Instrucoes_Global[i].Y, Instrucoes_Global[i].Key);
                 }
+
+                //Instruction list 1
+                for (byte i = 0; i < Instrucoes_1.Length; i++)
+                {
+                    if (Instrucoes_1[i] == null)
+                        break;
+
+                    PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
+                }
+
+                //Instruction list 2
+                for (byte i = 0; i < Instrucoes_2.Length; i++)
+                {
+                    if (Instrucoes_2[i] == null)
+                        break;
+
+                    PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
+                }
+
+                //Instruction list 3
+                for (byte i = 0; i < Instrucoes_3.Length; i++)
+                {
+                    if (Instrucoes_3[i] == null)
+                        break;
+
+                    PerformClick(Instrucoes_3[i].X, Instrucoes_3[i].Y, Instrucoes_3[i].Key);
+                }
+
+                //Instruction list 4
+                for (byte i = 0; i < Instrucoes_4.Length; i++)
+                {
+                    if (Instrucoes_4[i] == null)
+                        break;
+
+                    PerformClick(Instrucoes_4[i].X, Instrucoes_4[i].Y, Instrucoes_4[i].Key);
+                }
+
+                //Instruction list 5
+                for (byte i = 0; i < Instrucoes_5.Length; i++)
+                {
+                    if (Instrucoes_5[i] == null)
+                        break;
+
+                    PerformClick(Instrucoes_5[i].X, Instrucoes_5[i].Y, Instrucoes_5[i].Key);
+                }
+
 
                 iteracoes++;
 
@@ -669,130 +707,156 @@ namespace Auto_click_atlas_2
                 tb_restante.Refresh();
 
             } while (iteracoes <= repeticoes && cb_repete.Checked);
+                    
 
 
-            btn_Start.Text = "START (S)";
-            btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
-            btn_Start.Refresh();
 
-            startState = 0;
-            f_Start = false;
+            //else
+            //{
+            //    do
+            //    {
+            //        for (byte j = 0; j < Instrucoes_Global.Length; j++)
+            //        {
+
+            //            tb_restante.Text = restante.ToString();
+            //            tb_restante.Refresh();
+
+            //            if (Instrucoes_Global[j] != null && f_stop != true)
+            //                PerformClick(Instrucoes_Global[j].X, Instrucoes_Global[j].Y, Instrucoes_Global[j].Key);
+            //        }
 
 
-            if (indicesVazios == Instrucoes_Global.Length)
-                MessageBox.Show(new Form { TopMost = true }, "Não há Instrucoes_Global para executar!!");
 
         }
+
+
+
+
+
+
+
+        btn_Start.Text = "START (S)";
+        btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
+        btn_Start.Refresh();
+
+        startState = 0;
+        f_Start = false;
+
+
+        if (indicesVazios == Instrucoes_Global.Length)
+            MessageBox.Show(new Form { TopMost = true }, "Não há Instrucoes para executar!!");
+
+    }
     })
             { IsBackground = true };
-            thread1.Start();
+    thread1.Start();
         }
 
-        private void btn_Continue_Click(object sender, EventArgs e)
-        {
-            if (f_Start)
-            {
-                f_pause = false;
-            }
-        }
+private void btn_Continue_Click(object sender, EventArgs e)
+{
+    if (f_Start)
+    {
+        f_pause = false;
+    }
+}
 
-        private void btn_Clear_Click(object sender, EventArgs e)
-        {
-            tb_instrucoes.Text = tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
-
-
-
-            //Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
-            Array.Clear(Instrucoes_Global, instructionNumber, 1);
+private void btn_Clear_Click(object sender, EventArgs e)
+{
+    tb_instrucoes.Text = tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
 
-            instructionQuantity--;
-            lb_instructions_quantity.Text = instructionQuantity.ToString();
-        }
 
-        /* ---- CHECK BOX ---- */
-        private void cb_repete_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cb_repete.Checked == true)
-            {
-                tb_repete.Enabled = true;
-            }
-            else
-            {
-                tb_repete.Enabled = false;
-            }
-        }
-        private void cb_enable_btns_CheckedChanged(object sender, EventArgs e)
-        {
-            this.ActiveControl = null;  //Para tirar o foco do cb e nao ser checado pela tecla SPACE
-
-            //recordState = 0;
-            //f_btn_record = false;
-            //btn_Record.BackColor = Color.White;
-            //btn_Record.Text = "RECORD (G)";
-        }
-
-        /* ---- CHECK BOX END ---- */
+    //Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
+    Array.Clear(Instrucoes_Global, instructionNumber, 1);
 
 
-        /* ---- TEXT BOX ---- */
+    instructionQuantity--;
+    lb_instructions_quantity.Text = instructionQuantity.ToString();
+}
 
-        private void tb_interval_TextChanged(object sender, EventArgs e)
-        {
-            string digitsOnly = String.Empty;
-            foreach (char c in tb_interval.Text)
-            {
-                // Do not use IsDigit as it will include more than the characters 0 through to 9
-                if (c >= '0' && c <= '9') digitsOnly += c;
-            }
+/* ---- CHECK BOX ---- */
+private void cb_repete_CheckedChanged(object sender, EventArgs e)
+{
+    if (cb_repete.Checked == true)
+    {
+        tb_repete.Enabled = true;
+    }
+    else
+    {
+        tb_repete.Enabled = false;
+    }
+}
+private void cb_enable_btns_CheckedChanged(object sender, EventArgs e)
+{
+    this.ActiveControl = null;  //Para tirar o foco do cb e nao ser checado pela tecla SPACE
 
+    //recordState = 0;
+    //f_btn_record = false;
+    //btn_Record.BackColor = Color.White;
+    //btn_Record.Text = "RECORD (G)";
+}
 
-            Int16.TryParse(digitsOnly, out short intervalo);
-            interval = intervalo;
-
-            tb_interval.Text = digitsOnly;
-
-
-        }
-
-        private void tb_repete_TextChanged(object sender, EventArgs e)
-        {
-
-
-            string digitsOnly = String.Empty;
-            foreach (char c in tb_repete.Text)
-            {
-                // Do not use IsDigit as it will include more than the characters 0 through to 9
-                if (c >= '0' && c <= '9') digitsOnly += c;
-            }
+/* ---- CHECK BOX END ---- */
 
 
-            Int16.TryParse(digitsOnly, out short repeticaoes_);
-            repeticoes = repeticaoes_;
+/* ---- TEXT BOX ---- */
 
-            tb_repete.Text = digitsOnly;
-        }
-
-        /* ---- TEXT BOX END---- */
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //if(cb_multi_Instructions.Checked)
-            //{
-            //    Instrucoes_Global ins
-            //}
-
-            Unsubscribe();
-            Subscribe(Hook.GlobalEvents());
-
-        }
+private void tb_interval_TextChanged(object sender, EventArgs e)
+{
+    string digitsOnly = String.Empty;
+    foreach (char c in tb_interval.Text)
+    {
+        // Do not use IsDigit as it will include more than the characters 0 through to 9
+        if (c >= '0' && c <= '9') digitsOnly += c;
+    }
 
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Unsubscribe();
-        }
+    Int16.TryParse(digitsOnly, out short intervalo);
+    interval = intervalo;
+
+    tb_interval.Text = digitsOnly;
+
+
+}
+
+private void tb_repete_TextChanged(object sender, EventArgs e)
+{
+
+
+    string digitsOnly = String.Empty;
+    foreach (char c in tb_repete.Text)
+    {
+        // Do not use IsDigit as it will include more than the characters 0 through to 9
+        if (c >= '0' && c <= '9') digitsOnly += c;
+    }
+
+
+    Int16.TryParse(digitsOnly, out short repeticaoes_);
+    repeticoes = repeticaoes_;
+
+    tb_repete.Text = digitsOnly;
+}
+
+/* ---- TEXT BOX END---- */
+
+
+private void Form1_Load(object sender, EventArgs e)
+{
+    //if(cb_multi_Instructions.Checked)
+    //{
+    //    Instrucoes_Global ins
+    //}
+
+    Unsubscribe();
+    Subscribe(Hook.GlobalEvents());
+
+}
+
+
+private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+{
+    Unsubscribe();
+}
 
 
     }

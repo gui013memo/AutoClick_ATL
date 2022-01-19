@@ -265,7 +265,7 @@ namespace Auto_click_atlas_2
             this.lb_acoes.Size = new System.Drawing.Size(54, 21);
             this.lb_acoes.TabIndex = 20;
             this.lb_acoes.Text = "Clicks";
-            this.lb_acoes.Click += new System.EventHandler(this.lb_acoes_Click);
+            
             // 
             // btn_Clear
             // 
@@ -451,7 +451,7 @@ namespace Auto_click_atlas_2
             this.btn_Select.TabIndex = 35;
             this.btn_Select.Text = "SELECT (S)";
             this.btn_Select.UseVisualStyleBackColor = false;
-            this.btn_Select.Click += new System.EventHandler(this.btn_Select_Click);
+            
             // 
             // lb_multiInstrucoes_2
             // 
