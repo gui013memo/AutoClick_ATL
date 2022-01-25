@@ -85,6 +85,7 @@ namespace Auto_click_atlas_2
         short repeticoes = 0;
         short restante = 0;
         byte f_mode = 0;
+        byte modeSelected = 0;
 
         // Instructions
 
@@ -155,6 +156,22 @@ namespace Auto_click_atlas_2
 
         }
 
+        public void PauseBlinking()
+        {
+
+            gb_pause.BackColor = Color.Red;
+            f_pause = true;
+
+            while (f_pause)
+            {
+                gb_pause.BackColor = Color.Red;
+                System.Threading.Thread.Sleep(100);
+                gb_pause.BackColor = Color.White;
+                System.Threading.Thread.Sleep(100);
+            }
+
+        }
+
         public void PerformClick(int X, int Y, char Key)
         {
 
@@ -182,16 +199,18 @@ namespace Auto_click_atlas_2
             else if (Key == '$')
             {
 
-                gb_pause.BackColor = Color.Red;
-                f_pause = true;
+                PauseBlinking();
 
-                while (f_pause)
-                {
-                    gb_pause.BackColor = Color.Red;
-                    System.Threading.Thread.Sleep(100);
-                    gb_pause.BackColor = Color.White;
-                    System.Threading.Thread.Sleep(100);
-                }
+                //gb_pause.BackColor = Color.Red;
+                //f_pause = true;
+
+                //while (f_pause)
+                //{
+                //    gb_pause.BackColor = Color.Red;
+                //    System.Threading.Thread.Sleep(100);
+                //    gb_pause.BackColor = Color.White;
+                //    System.Threading.Thread.Sleep(100);
+                //}
 
 
 
@@ -340,26 +359,12 @@ namespace Auto_click_atlas_2
 
         private void M_Events_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //CLOSE
+            //                   -  Fechar programa com ESC  -
             //if (e.KeyChar == 27 )                              <-- ***Fecha app com "ESC"***
             //  System.Windows.Forms.Application.ExitThread();
 
             if (cb_enable_btns.Checked)
             {
-                //{// TESTE DA SELECAO
-                //    if (e.KeyChar == 'q')
-                //    {
-
-                //        mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
-                //    }
-
-                //    if (e.KeyChar == 'w')
-                //    {
-
-                //        mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-                //    }
-                //}
-
 
                 //Gera modo 1 
                 if (e.KeyChar == '6')
@@ -377,6 +382,7 @@ namespace Auto_click_atlas_2
                 if (e.KeyChar == '0')
                     btn_modo_5.PerformClick();
 
+                /*          MOUSE              */
 
                 //Click Esquerdo
                 if (e.KeyChar == 'e' || e.KeyChar == 'E')
@@ -389,6 +395,7 @@ namespace Auto_click_atlas_2
                     btn_Right.PerformClick();
                 }
 
+                /*          MOUSE END           */
 
                 //Pause
                 if (e.KeyChar == 'p' || e.KeyChar == 'P')
@@ -396,11 +403,11 @@ namespace Auto_click_atlas_2
                     btn_Pause.PerformClick();
                 }
 
-                //Select
-                if (e.KeyChar == 's' || e.KeyChar == 'S')
-                {
-                    btn_Select.PerformClick();
-                }
+                ////Select   **EM DESENVOLVIMENTO**
+                //if (e.KeyChar == 's' || e.KeyChar == 'S')
+                //{
+                //    btn_Select.PerformClick();
+                //}
 
 
                 /* ------------Comandos de Execucao----------- */
@@ -417,11 +424,6 @@ namespace Auto_click_atlas_2
                     btn_Start.PerformClick();
                 }
 
-                if (e.KeyChar == 'c' || e.KeyChar == 'C')
-                {
-                    btn_Continue.PerformClick();
-                }
-
                 //STOP
                 if (e.KeyChar == ' ')
                 {
@@ -433,6 +435,33 @@ namespace Auto_click_atlas_2
                 {
                     btn_Record.PerformClick();
                 }
+
+                //CONTINUE
+                if (e.KeyChar == 'c' || e.KeyChar == 'C')
+                {
+                    btn_Continue.PerformClick();
+                }
+
+                //MODE SELECT
+                if (cb_multi_Instructions.Checked)
+                {
+                    _//Executa modo 1 
+                    if (e.KeyChar == '1')
+                        modeSelected = 1;
+                    //Executa modo 2
+                    if (e.KeyChar == '2')
+                        modeSelected = 2;
+                    //Executa modo 3
+                    if (e.KeyChar == '3')
+                        modeSelected = 3;
+                    //Executa modo 4
+                    if (e.KeyChar == '4')
+                        modeSelected = 4;
+                    //Executa modo 5
+                    if (e.KeyChar == '5')
+                        modeSelected = 5;
+                }
+
 
             }   /* -----------END------------ */
         }
@@ -606,6 +635,7 @@ namespace Auto_click_atlas_2
     {
         startState = 1;
 
+
         /*if (f_stop == true)
         {
             thread1.Suspend();
@@ -639,7 +669,7 @@ namespace Auto_click_atlas_2
 
 
 
-            tb_instrucoes.Text += "Modo multi!";
+            //tb_instrucoes.Text += "Modo multi!";
 
             do
             {
@@ -647,60 +677,89 @@ namespace Auto_click_atlas_2
                 //Instruction list global
                 for (byte i = 0; i < Instrucoes_Global.Length; i++)
                 {
-                    
-                    
+
+                    lb_currentMode.Text = 'P'.ToString();
+
                     if (Instrucoes_Global[i] == null)
                         break;
 
                     PerformClick(Instrucoes_Global[i].X, Instrucoes_Global[i].Y, Instrucoes_Global[i].Key);
                 }
 
-                //Instruction list 1
-                for (byte i = 0; i < Instrucoes_1.Length; i++)
+                if (cb_multi_Instructions.Checked)
                 {
-                    lb_currentMode.Text = '1'.ToString();
-                    
-                    if (Instrucoes_1[i] == null)
-                        break;
 
-                    PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
+                    PauseBlinking();
+
+                    switch (modeSelected)
+                    {
+                        case 1:
+                            //Instruction list 1
+                            for (byte i = 0; i < Instrucoes_1.Length; i++)
+                            {
+                                if (Instrucoes_1[i] == null)
+                                    break;
+
+                                PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
+                            }
+                            break;
+
+                        case 2:
+                            //Instruction list 2
+                            for (byte i = 0; i < Instrucoes_2.Length; i++)
+                            {
+                                if (Instrucoes_2[i] == null)
+                                    break;
+
+                                PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
+                            }
+                            break;
+
+                        case 3:
+                            //Instruction list 3
+                            for (byte i = 0; i < Instrucoes_3.Length; i++)
+                            {
+                                if (Instrucoes_3[i] == null)
+                                    break;
+
+                                PerformClick(Instrucoes_3[i].X, Instrucoes_3[i].Y, Instrucoes_3[i].Key);
+                            }
+                            break;
+
+                        case 4:
+                            //Instruction list 4
+                            for (byte i = 0; i < Instrucoes_4.Length; i++)
+                            {
+                                if (Instrucoes_4[i] == null)
+                                    break;
+
+                                PerformClick(Instrucoes_4[i].X, Instrucoes_4[i].Y, Instrucoes_4[i].Key);
+                            }
+                            break;
+
+                        case 5:
+                            //Instruction list 5
+                            for (byte i = 0; i < Instrucoes_5.Length; i++)
+                            {
+                                if (Instrucoes_5[i] == null)
+                                    break;
+
+                                PerformClick(Instrucoes_5[i].X, Instrucoes_5[i].Y, Instrucoes_5[i].Key);
+                            }
+                            break;
+                    }
+
+
+
+
+
+
+
+                  
+
+                  
                 }
 
-                //Instruction list 2
-                for (byte i = 0; i < Instrucoes_2.Length; i++)
-                {
-                    if (Instrucoes_2[i] == null)
-                        break;
-
-                    PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
-                }
-
-                //Instruction list 3
-                for (byte i = 0; i < Instrucoes_3.Length; i++)
-                {
-                    if (Instrucoes_3[i] == null)
-                        break;
-
-                    PerformClick(Instrucoes_3[i].X, Instrucoes_3[i].Y, Instrucoes_3[i].Key);
-                }
-
-                //Instruction list 4
-                for (byte i = 0; i < Instrucoes_4.Length; i++)
-                {
-                    if (Instrucoes_4[i] == null)
-                        break;
-
-                    PerformClick(Instrucoes_4[i].X, Instrucoes_4[i].Y, Instrucoes_4[i].Key);
-                }
-
-                //Instruction list 5
-                for (byte i = 0; i < Instrucoes_5.Length; i++)
-                {
-                    if (Instrucoes_5[i] == null)
-                        break;
-
-                    PerformClick(Instrucoes_5[i].X, Instrucoes_5[i].Y, Instrucoes_5[i].Key);
-                }
 
 
                 repeticoes--;
