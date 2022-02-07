@@ -462,13 +462,25 @@ namespace Auto_click_atlas_2
                     }
                     //Executa modo 3
                     if (e.KeyChar == '3')
+                    {
+                        f_pause = false;
                         modeSelected = 3;
+                        tb_instrucoes.Text += "MODE 3 SELECIONADO!";
+                    }
                     //Executa modo 4
                     if (e.KeyChar == '4')
+                    {
+                        f_pause = false;
                         modeSelected = 4;
+                        tb_instrucoes.Text += "MODE 4 SELECIONADO!";
+                    }
                     //Executa modo 5
                     if (e.KeyChar == '5')
+                    {
+                        f_pause = false;
                         modeSelected = 5;
+                        tb_instrucoes.Text += "MODE 5 SELECIONADO!";
+                    }
                 }
 
 
@@ -544,6 +556,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 3;
                 instructionNumber = 0;
+                tb_instrucoes.Text += "Inicio modo 3";
             }
         }
 
@@ -553,6 +566,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 4;
                 instructionNumber = 0;
+                tb_instrucoes.Text += "Inicio modo 4";
             }
         }
 
@@ -562,6 +576,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 5;
                 instructionNumber = 0;
+                tb_instrucoes.Text += "Inicio modo 5";
             }
         }
 
@@ -687,7 +702,7 @@ namespace Auto_click_atlas_2
                 for (byte i = 0; i < Instrucoes_Global.Length; i++)
                 {
 
-                    lb_currentMode.Text = 'P'.ToString();
+                    lb_currentMode.Text = "P".ToString();
 
                     if (Instrucoes_Global[i] == null)
                         break;
@@ -695,7 +710,7 @@ namespace Auto_click_atlas_2
                     PerformClick(Instrucoes_Global[i].X, Instrucoes_Global[i].Y, Instrucoes_Global[i].Key);
                 }
 
-                if (cb_multi_Instructions.Checked)
+                if (cb_multi_Instructions.Checked && !f_stop)
                 {
 
                     PauseBlinking();
@@ -728,6 +743,7 @@ namespace Auto_click_atlas_2
 
                         case 3:
                             //Instruction list 3
+                            lb_currentMode.Text = '3'.ToString();
                             for (byte i = 0; i < Instrucoes_3.Length; i++)
                             {
                                 if (Instrucoes_3[i] == null)
@@ -739,6 +755,7 @@ namespace Auto_click_atlas_2
 
                         case 4:
                             //Instruction list 4
+                            lb_currentMode.Text = '4'.ToString();
                             for (byte i = 0; i < Instrucoes_4.Length; i++)
                             {
                                 if (Instrucoes_4[i] == null)
@@ -750,6 +767,7 @@ namespace Auto_click_atlas_2
 
                         case 5:
                             //Instruction list 5
+                            lb_currentMode.Text = '5'.ToString();
                             for (byte i = 0; i < Instrucoes_5.Length; i++)
                             {
                                 if (Instrucoes_5[i] == null)
@@ -777,7 +795,7 @@ namespace Auto_click_atlas_2
                 tb_restante.Text = repeticoes.ToString();
                 tb_restante.Refresh();
 
-            } while (repeticoes > 0 && cb_repete.Checked);
+            } while (repeticoes > 0 && cb_repete.Checked && !f_stop);
 
 
 
