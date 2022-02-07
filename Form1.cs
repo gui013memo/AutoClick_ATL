@@ -445,12 +445,21 @@ namespace Auto_click_atlas_2
                 //MODE SELECT
                 if (cb_multi_Instructions.Checked)
                 {
-                    _//Executa modo 1 
+                    //Executa modo 1 
                     if (e.KeyChar == '1')
+                    {
+                        f_pause = false;
                         modeSelected = 1;
+                        tb_instrucoes.Text += "MODE 1 SELECIONADO!";
+                    }
+
                     //Executa modo 2
                     if (e.KeyChar == '2')
+                    {
+                        f_pause = false;
                         modeSelected = 2;
+                        tb_instrucoes.Text += "MODE 2 SELECIONADO!";
+                    }
                     //Executa modo 3
                     if (e.KeyChar == '3')
                         modeSelected = 3;
@@ -695,6 +704,7 @@ namespace Auto_click_atlas_2
                     {
                         case 1:
                             //Instruction list 1
+                            lb_currentMode.Text = '1'.ToString();
                             for (byte i = 0; i < Instrucoes_1.Length; i++)
                             {
                                 if (Instrucoes_1[i] == null)
@@ -706,6 +716,7 @@ namespace Auto_click_atlas_2
 
                         case 2:
                             //Instruction list 2
+                            lb_currentMode.Text = '2'.ToString();
                             for (byte i = 0; i < Instrucoes_2.Length; i++)
                             {
                                 if (Instrucoes_2[i] == null)
@@ -755,9 +766,9 @@ namespace Auto_click_atlas_2
 
 
 
-                  
 
-                  
+
+
                 }
 
 
@@ -822,16 +833,23 @@ namespace Auto_click_atlas_2
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            tb_instrucoes.Text = tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
+            tb_instrucoes.Text = null;  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
 
 
-            //Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
-            Array.Clear(Instrucoes_Global, instructionNumber, 1);
+            Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
+            Array.Clear(Instrucoes_1, 0, Instrucoes_1.Length);
+            Array.Clear(Instrucoes_2, 0, Instrucoes_2.Length);
+            Array.Clear(Instrucoes_3, 0, Instrucoes_3.Length);
+            Array.Clear(Instrucoes_4, 0, Instrucoes_4.Length);
+            Array.Clear(Instrucoes_5, 0, Instrucoes_5.Length);
+            lb_instructions_quantity.Text = "0";
+
+            //Array.Clear(Instrucoes_Global, instructionNumber, 1);
 
 
-            instructionQuantity--;
-            lb_instructions_quantity.Text = instructionQuantity.ToString();
+            //instructionQuantity--;
+            //lb_instructions_quantity.Text = instructionQuantity.ToString();
         }
 
         /* ---- CHECK BOX ---- */
