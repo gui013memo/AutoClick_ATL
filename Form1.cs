@@ -296,6 +296,13 @@ namespace Auto_click_atlas_2
 
         // 
 
+        private void compara()
+        {
+
+
+
+        }
+
 
         private void M_Events_MouseMove(object sender, MouseEventArgs e)
         {
@@ -416,6 +423,8 @@ namespace Auto_click_atlas_2
                 if (e.KeyChar == 'l' || e.KeyChar == 'L')
                 {
                     btn_Clear.PerformClick();
+                    compara();
+
                 }
 
                 //START
@@ -896,6 +905,12 @@ namespace Auto_click_atlas_2
 
 
         /* ---- TEXT BOX ---- */
+        private void tb_Consulta_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_consulta.Checked)
+                compara();
+        }
+
 
         private void tb_interval_TextChanged(object sender, EventArgs e)
         {
@@ -947,6 +962,7 @@ namespace Auto_click_atlas_2
             Subscribe(Hook.GlobalEvents());
 
         }
+
 
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

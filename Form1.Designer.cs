@@ -68,6 +68,10 @@ namespace Auto_click_atlas_2
             this.btn_modo_4 = new System.Windows.Forms.Button();
             this.btn_modo_5 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_Consulta = new System.Windows.Forms.TextBox();
+            this.lb_Consulta = new System.Windows.Forms.Label();
+            this.cb_consulta = new System.Windows.Forms.CheckBox();
+            this.lb_consulta2 = new System.Windows.Forms.Label();
             this.gb_pause.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -260,12 +264,11 @@ namespace Auto_click_atlas_2
             // 
             this.lb_acoes.AutoSize = true;
             this.lb_acoes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_acoes.Location = new System.Drawing.Point(232, 108);
+            this.lb_acoes.Location = new System.Drawing.Point(187, 108);
             this.lb_acoes.Name = "lb_acoes";
             this.lb_acoes.Size = new System.Drawing.Size(54, 21);
             this.lb_acoes.TabIndex = 20;
             this.lb_acoes.Text = "Clicks";
-            
             // 
             // btn_Clear
             // 
@@ -285,7 +288,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_stats.AutoSize = true;
             this.lb_stats.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_stats.Location = new System.Drawing.Point(312, 4);
+            this.lb_stats.Location = new System.Drawing.Point(187, 16);
             this.lb_stats.Name = "lb_stats";
             this.lb_stats.Size = new System.Drawing.Size(73, 30);
             this.lb_stats.TabIndex = 22;
@@ -295,7 +298,7 @@ namespace Auto_click_atlas_2
             // 
             this.tb_restante.Enabled = false;
             this.tb_restante.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tb_restante.Location = new System.Drawing.Point(232, 61);
+            this.tb_restante.Location = new System.Drawing.Point(187, 70);
             this.tb_restante.Name = "tb_restante";
             this.tb_restante.ReadOnly = true;
             this.tb_restante.Size = new System.Drawing.Size(70, 35);
@@ -307,7 +310,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_restante.AutoSize = true;
             this.lb_restante.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_restante.Location = new System.Drawing.Point(232, 37);
+            this.lb_restante.Location = new System.Drawing.Point(187, 46);
             this.lb_restante.Name = "lb_restante";
             this.lb_restante.Size = new System.Drawing.Size(70, 21);
             this.lb_restante.TabIndex = 24;
@@ -341,7 +344,7 @@ namespace Auto_click_atlas_2
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(292, 108);
+            this.label1.Location = new System.Drawing.Point(238, 108);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 21);
             this.label1.TabIndex = 30;
@@ -390,7 +393,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_currentMode.AutoSize = true;
             this.lb_currentMode.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_currentMode.Location = new System.Drawing.Point(36, 82);
+            this.lb_currentMode.Location = new System.Drawing.Point(39, 50);
             this.lb_currentMode.Name = "lb_currentMode";
             this.lb_currentMode.Size = new System.Drawing.Size(46, 54);
             this.lb_currentMode.TabIndex = 34;
@@ -400,7 +403,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_modo.AutoSize = true;
             this.lb_modo.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_modo.Location = new System.Drawing.Point(10, 11);
+            this.lb_modo.Location = new System.Drawing.Point(10, 9);
             this.lb_modo.Name = "lb_modo";
             this.lb_modo.Size = new System.Drawing.Size(99, 41);
             this.lb_modo.TabIndex = 33;
@@ -451,7 +454,6 @@ namespace Auto_click_atlas_2
             this.btn_Select.TabIndex = 35;
             this.btn_Select.Text = "SELECT (S)";
             this.btn_Select.UseVisualStyleBackColor = false;
-            
             // 
             // lb_multiInstrucoes_2
             // 
@@ -538,11 +540,51 @@ namespace Auto_click_atlas_2
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox1.Controls.Add(this.lb_modo);
             this.groupBox1.Controls.Add(this.lb_currentMode);
-            this.groupBox1.Location = new System.Drawing.Point(403, 62);
+            this.groupBox1.Location = new System.Drawing.Point(403, 161);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(115, 203);
+            this.groupBox1.Size = new System.Drawing.Size(115, 104);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
+            // 
+            // tb_Consulta
+            // 
+            this.tb_Consulta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tb_Consulta.Location = new System.Drawing.Point(304, 101);
+            this.tb_Consulta.Name = "tb_Consulta";
+            this.tb_Consulta.Size = new System.Drawing.Size(214, 23);
+            this.tb_Consulta.TabIndex = 43;
+            this.tb_Consulta.Text = "0";
+            this.tb_Consulta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_Consulta.TextChanged += new System.EventHandler(this.tb_Consulta_TextChanged);
+            // 
+            // lb_Consulta
+            // 
+            this.lb_Consulta.AutoSize = true;
+            this.lb_Consulta.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_Consulta.Location = new System.Drawing.Point(304, 58);
+            this.lb_Consulta.Name = "lb_Consulta";
+            this.lb_Consulta.Size = new System.Drawing.Size(213, 30);
+            this.lb_Consulta.TabIndex = 33;
+            this.lb_Consulta.Text = "Numero de consulta";
+            // 
+            // cb_consulta
+            // 
+            this.cb_consulta.AutoSize = true;
+            this.cb_consulta.Location = new System.Drawing.Point(48, 575);
+            this.cb_consulta.Name = "cb_consulta";
+            this.cb_consulta.Size = new System.Drawing.Size(15, 14);
+            this.cb_consulta.TabIndex = 44;
+            this.cb_consulta.UseVisualStyleBackColor = true;
+            // 
+            // lb_consulta2
+            // 
+            this.lb_consulta2.AutoSize = true;
+            this.lb_consulta2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_consulta2.Location = new System.Drawing.Point(15, 552);
+            this.lb_consulta2.Name = "lb_consulta2";
+            this.lb_consulta2.Size = new System.Drawing.Size(77, 21);
+            this.lb_consulta2.TabIndex = 45;
+            this.lb_consulta2.Text = "Consulta";
             // 
             // Form1
             // 
@@ -552,6 +594,10 @@ namespace Auto_click_atlas_2
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(540, 601);
+            this.Controls.Add(this.lb_consulta2);
+            this.Controls.Add(this.cb_consulta);
+            this.Controls.Add(this.lb_Consulta);
+            this.Controls.Add(this.tb_Consulta);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_modo_5);
             this.Controls.Add(this.btn_modo_4);
@@ -637,6 +683,10 @@ namespace Auto_click_atlas_2
         private System.Windows.Forms.Button btn_modo_4;
         private System.Windows.Forms.Button btn_modo_5;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tb_Consulta;
+        private System.Windows.Forms.Label lb_Consulta;
+        private System.Windows.Forms.CheckBox cb_consulta;
+        private System.Windows.Forms.Label lb_consulta2;
     }
 }
 
