@@ -467,7 +467,7 @@ namespace Auto_click_atlas_2
             // 
             // btn_modo_1
             // 
-            this.btn_modo_1.BackColor = System.Drawing.Color.White;
+            this.btn_modo_1.BackColor = System.Drawing.Color.YellowGreen;
             this.btn_modo_1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_modo_1.FlatAppearance.BorderSize = 2;
             this.btn_modo_1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -475,13 +475,13 @@ namespace Auto_click_atlas_2
             this.btn_modo_1.Name = "btn_modo_1";
             this.btn_modo_1.Size = new System.Drawing.Size(154, 28);
             this.btn_modo_1.TabIndex = 37;
-            this.btn_modo_1.Text = "Modo 1 (6)";
+            this.btn_modo_1.Text = "Modo #1 (6) ";
             this.btn_modo_1.UseVisualStyleBackColor = false;
             this.btn_modo_1.Click += new System.EventHandler(this.btn_modo_1_Click);
             // 
             // btn_modo_2
             // 
-            this.btn_modo_2.BackColor = System.Drawing.Color.White;
+            this.btn_modo_2.BackColor = System.Drawing.Color.YellowGreen;
             this.btn_modo_2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_modo_2.FlatAppearance.BorderSize = 2;
             this.btn_modo_2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -489,7 +489,7 @@ namespace Auto_click_atlas_2
             this.btn_modo_2.Name = "btn_modo_2";
             this.btn_modo_2.Size = new System.Drawing.Size(154, 28);
             this.btn_modo_2.TabIndex = 38;
-            this.btn_modo_2.Text = "Modo 2 (7)";
+            this.btn_modo_2.Text = "Modo #2 (7)";
             this.btn_modo_2.UseVisualStyleBackColor = false;
             this.btn_modo_2.Click += new System.EventHandler(this.btn_modo_2_Click);
             // 

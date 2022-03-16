@@ -13,6 +13,7 @@ using Gma.System.MouseKeyHook;
  *          2 - deve conter no codigo:
  *              
  *              private void Form1_Load(object sender, EventArgs e)
+ *              
                 {
                    Unsubscribe();
                    Subscribe(Hook.GlobalEvents());
@@ -25,7 +26,27 @@ using Gma.System.MouseKeyHook;
  * 
  * */
 
-
+/*
+ * TODO:
+ *      
+ *      Modo BLM Torque         -> Comparacao
+ *      
+ * Inserir:
+ *      Menu "Arquivo"          -> salvar e carregar 
+ *      Menu "Configurações"    ->
+ *      Menu "Modo"             -> Generico, BLM Torque
+ *      Menu "Creditos"         -> Desenvolvedor, link GitHub
+ *     
+ *      ~ Tela de loading
+ * 
+ * Melhoria:
+ *      Verificar campo "RESTANTE" no momento em que a tecla "espaço" pausa o programa
+ *      
+ * 
+ * 
+ *  
+ * 
+ */
 
 
 namespace Auto_click_atlas_2
@@ -299,7 +320,10 @@ namespace Auto_click_atlas_2
         private void compara()
         {
 
+            //if ()
+            //{
 
+            //}
 
         }
 
