@@ -54,6 +54,7 @@ namespace Auto_click_atlas_2
             this.lb_instructions_quantity = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gb_pause = new System.Windows.Forms.GroupBox();
+            this.lb_memoria = new System.Windows.Forms.Label();
             this.btn_Continue = new System.Windows.Forms.Button();
             this.lb_currentMode = new System.Windows.Forms.Label();
             this.lb_modo = new System.Windows.Forms.Label();
@@ -72,6 +73,9 @@ namespace Auto_click_atlas_2
             this.lb_Consulta = new System.Windows.Forms.Label();
             this.cb_consulta = new System.Windows.Forms.CheckBox();
             this.lb_consulta2 = new System.Windows.Forms.Label();
+            this.btn_verificar = new System.Windows.Forms.Button();
+            this.lb_compareResult = new System.Windows.Forms.Label();
+            this.tb_memoryValue = new System.Windows.Forms.TextBox();
             this.gb_pause.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -264,7 +268,7 @@ namespace Auto_click_atlas_2
             // 
             this.lb_acoes.AutoSize = true;
             this.lb_acoes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_acoes.Location = new System.Drawing.Point(187, 108);
+            this.lb_acoes.Location = new System.Drawing.Point(178, 108);
             this.lb_acoes.Name = "lb_acoes";
             this.lb_acoes.Size = new System.Drawing.Size(54, 21);
             this.lb_acoes.TabIndex = 20;
@@ -353,6 +357,7 @@ namespace Auto_click_atlas_2
             // gb_pause
             // 
             this.gb_pause.BackColor = System.Drawing.Color.White;
+            this.gb_pause.Controls.Add(this.lb_memoria);
             this.gb_pause.Controls.Add(this.btn_Continue);
             this.gb_pause.Controls.Add(this.tb_restante);
             this.gb_pause.Controls.Add(this.label1);
@@ -371,6 +376,16 @@ namespace Auto_click_atlas_2
             this.gb_pause.Size = new System.Drawing.Size(385, 290);
             this.gb_pause.TabIndex = 31;
             this.gb_pause.TabStop = false;
+            // 
+            // lb_memoria
+            // 
+            this.lb_memoria.AutoSize = true;
+            this.lb_memoria.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_memoria.Location = new System.Drawing.Point(292, 43);
+            this.lb_memoria.Name = "lb_memoria";
+            this.lb_memoria.Size = new System.Drawing.Size(74, 19);
+            this.lb_memoria.TabIndex = 47;
+            this.lb_memoria.Text = "memoria:";
             // 
             // btn_Continue
             // 
@@ -467,7 +482,7 @@ namespace Auto_click_atlas_2
             // 
             // btn_modo_1
             // 
-            this.btn_modo_1.BackColor = System.Drawing.Color.YellowGreen;
+            this.btn_modo_1.BackColor = System.Drawing.Color.LightGreen;
             this.btn_modo_1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_modo_1.FlatAppearance.BorderSize = 2;
             this.btn_modo_1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -481,7 +496,7 @@ namespace Auto_click_atlas_2
             // 
             // btn_modo_2
             // 
-            this.btn_modo_2.BackColor = System.Drawing.Color.YellowGreen;
+            this.btn_modo_2.BackColor = System.Drawing.Color.IndianRed;
             this.btn_modo_2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_modo_2.FlatAppearance.BorderSize = 2;
             this.btn_modo_2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -549,11 +564,10 @@ namespace Auto_click_atlas_2
             // tb_Consulta
             // 
             this.tb_Consulta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tb_Consulta.Location = new System.Drawing.Point(304, 101);
+            this.tb_Consulta.Location = new System.Drawing.Point(304, 82);
             this.tb_Consulta.Name = "tb_Consulta";
             this.tb_Consulta.Size = new System.Drawing.Size(214, 23);
             this.tb_Consulta.TabIndex = 43;
-            this.tb_Consulta.Text = "0";
             this.tb_Consulta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_Consulta.TextChanged += new System.EventHandler(this.tb_Consulta_TextChanged);
             // 
@@ -561,11 +575,11 @@ namespace Auto_click_atlas_2
             // 
             this.lb_Consulta.AutoSize = true;
             this.lb_Consulta.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_Consulta.Location = new System.Drawing.Point(304, 58);
+            this.lb_Consulta.Location = new System.Drawing.Point(360, 12);
             this.lb_Consulta.Name = "lb_Consulta";
-            this.lb_Consulta.Size = new System.Drawing.Size(213, 30);
+            this.lb_Consulta.Size = new System.Drawing.Size(99, 30);
             this.lb_Consulta.TabIndex = 33;
-            this.lb_Consulta.Text = "Numero de consulta";
+            this.lb_Consulta.Text = "Consulta";
             // 
             // cb_consulta
             // 
@@ -586,6 +600,41 @@ namespace Auto_click_atlas_2
             this.lb_consulta2.TabIndex = 45;
             this.lb_consulta2.Text = "Consulta";
             // 
+            // btn_verificar
+            // 
+            this.btn_verificar.BackColor = System.Drawing.Color.White;
+            this.btn_verificar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_verificar.FlatAppearance.BorderSize = 2;
+            this.btn_verificar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_verificar.Location = new System.Drawing.Point(334, 113);
+            this.btn_verificar.Name = "btn_verificar";
+            this.btn_verificar.Size = new System.Drawing.Size(154, 28);
+            this.btn_verificar.TabIndex = 46;
+            this.btn_verificar.Text = "Verificar";
+            this.btn_verificar.UseVisualStyleBackColor = false;
+            this.btn_verificar.Click += new System.EventHandler(this.btn_verificar_Click);
+            // 
+            // lb_compareResult
+            // 
+            this.lb_compareResult.AutoSize = true;
+            this.lb_compareResult.BackColor = System.Drawing.Color.Wheat;
+            this.lb_compareResult.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_compareResult.Location = new System.Drawing.Point(499, 28);
+            this.lb_compareResult.Name = "lb_compareResult";
+            this.lb_compareResult.Size = new System.Drawing.Size(19, 21);
+            this.lb_compareResult.TabIndex = 48;
+            this.lb_compareResult.Text = "0";
+            // 
+            // tb_memoryValue
+            // 
+            this.tb_memoryValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tb_memoryValue.Location = new System.Drawing.Point(381, 54);
+            this.tb_memoryValue.Name = "tb_memoryValue";
+            this.tb_memoryValue.Size = new System.Drawing.Size(125, 23);
+            this.tb_memoryValue.TabIndex = 49;
+            this.tb_memoryValue.Text = "0601-110163-001";
+            this.tb_memoryValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -594,6 +643,9 @@ namespace Auto_click_atlas_2
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(540, 601);
+            this.Controls.Add(this.tb_memoryValue);
+            this.Controls.Add(this.lb_compareResult);
+            this.Controls.Add(this.btn_verificar);
             this.Controls.Add(this.lb_consulta2);
             this.Controls.Add(this.cb_consulta);
             this.Controls.Add(this.lb_Consulta);
@@ -625,8 +677,9 @@ namespace Auto_click_atlas_2
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(737, 393);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Auto Clicker - By GO!";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -687,6 +740,10 @@ namespace Auto_click_atlas_2
         private System.Windows.Forms.Label lb_Consulta;
         private System.Windows.Forms.CheckBox cb_consulta;
         private System.Windows.Forms.Label lb_consulta2;
+        private System.Windows.Forms.Button btn_verificar;
+        private System.Windows.Forms.Label lb_memoria;
+        private System.Windows.Forms.Label lb_compareResult;
+        private System.Windows.Forms.TextBox tb_memoryValue;
     }
 }
 

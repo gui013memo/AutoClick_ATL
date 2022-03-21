@@ -2,8 +2,10 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Gma.System.MouseKeyHook;
+
 
 /*
  *      Instruções MouseKeyHook:
@@ -79,8 +81,6 @@ namespace Auto_click_atlas_2
 
         /*      GLOBAL VARIABLES       */
 
-        // TESTE PARA O GIT 
-
 
         // MEMORIAS
 
@@ -118,8 +118,6 @@ namespace Auto_click_atlas_2
         Instrucoes[] Instrucoes_3 = new Instrucoes[50];
         Instrucoes[] Instrucoes_4 = new Instrucoes[50];
         Instrucoes[] Instrucoes_5 = new Instrucoes[50];
-
-
 
 
         /*      GLOBAL VARIABLES       */
@@ -317,13 +315,20 @@ namespace Auto_click_atlas_2
 
         // 
 
-        private void compara()
+        private void compara(String numero)
         {
+            tb_instrucoes.Text += "Comparando: " + numero + " com: " + tb_memoryValue.Text;
 
-            //if ()
-            //{
-
-            //}
+            if (string.Equals(numero, tb_memoryValue.Text))
+            {
+                lb_compareResult.Text = "1";
+                lb_compareResult.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                lb_compareResult.Text = "0";
+                lb_compareResult.BackColor = Color.IndianRed;
+            }
 
         }
 
@@ -390,7 +395,7 @@ namespace Auto_click_atlas_2
 
         private void M_Events_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //                   -  Fechar programa com ESC  -
+            /* -  Fechar programa com ESC  - */
             //if (e.KeyChar == 27 )                              <-- ***Fecha app com "ESC"***
             //  System.Windows.Forms.Application.ExitThread();
 
@@ -447,7 +452,7 @@ namespace Auto_click_atlas_2
                 if (e.KeyChar == 'l' || e.KeyChar == 'L')
                 {
                     btn_Clear.PerformClick();
-                    compara();
+
 
                 }
 
@@ -560,11 +565,11 @@ namespace Auto_click_atlas_2
 
         /* ---- FUNCOES END ----*/
 
-        //      ======= Botoes =======
+        /* --- BUTTONS --- */
 
         private void btn_modo_1_Click(object sender, EventArgs e)
         {
-            if (f_btn_record && cb_multi_Instructions.Checked)
+            if (f_btn_record && (cb_multi_Instructions.Checked || cb_consulta.Checked))
             {
                 f_mode = 1;
                 instructionNumber = 0;
@@ -575,7 +580,7 @@ namespace Auto_click_atlas_2
 
         private void btn_modo_2_Click(object sender, EventArgs e)
         {
-            if (f_btn_record && cb_multi_Instructions.Checked)
+            if (f_btn_record && (cb_multi_Instructions.Checked || cb_consulta.Checked))
             {
                 f_mode = 2;
                 instructionNumber = 0;
@@ -822,7 +827,35 @@ namespace Auto_click_atlas_2
 
                 }
 
+                if (cb_consulta.Checked && !f_stop)
+                {
+                    if (lb_compareResult.Text == "1")
+                    {
+                        //Instruction list 1
+                        lb_currentMode.Text = "CAD".ToString();
+                        for (byte i = 0; i < Instrucoes_1.Length; i++)
+                        {
+                            if (Instrucoes_1[i] == null)
+                                break;
 
+                            PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
+                        }
+                    }
+                    else
+                    {
+                        //Instruction list 2
+                        lb_currentMode.Text = "ALT".ToString();
+                        for (byte i = 0; i < Instrucoes_2.Length; i++)
+                        {
+                            if (Instrucoes_2[i] == null)
+                                break;
+
+                            PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
+                        }
+                    }
+
+
+                }
 
                 repeticoes--;
                 tb_restante.Text = repeticoes.ToString();
@@ -903,6 +936,13 @@ namespace Auto_click_atlas_2
             //lb_instructions_quantity.Text = instructionQuantity.ToString();
         }
 
+        private void btn_verificar_Click(object sender, EventArgs e)
+        {
+            compara(tb_Consulta.Text);
+        }
+
+        /* --- BUTTONS END --- */
+
         /* ---- CHECK BOX ---- */
         private void cb_repete_CheckedChanged(object sender, EventArgs e)
         {
@@ -931,8 +971,8 @@ namespace Auto_click_atlas_2
         /* ---- TEXT BOX ---- */
         private void tb_Consulta_TextChanged(object sender, EventArgs e)
         {
-            if (cb_consulta.Checked)
-                compara();
+
+
         }
 
 
