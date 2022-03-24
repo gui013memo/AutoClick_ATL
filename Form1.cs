@@ -1064,21 +1064,25 @@ namespace Auto_click_atlas_2
 
             using (StreamReader reader = new StreamReader(ofd.FileName))
             {
-                string line;
+                string line = "testee";
 
-                do 
+                do
                 {
                     line = reader.ReadLine();
-                    //if(line == )
-                    tb_instrucoes.Text += line + "\r\n";
 
-
-
-
-                }while (line != null);
-
-
-
+                    if (line != null)
+                    {
+                        if (line.Contains("Click L"))
+                        {
+                            tb_instrucoes.Text += line.Substring(13, 4) + "\r\n";
+                            setInstructionList(Int16.Parse(line.Substring(13, 4)), Int16.Parse(line.Substring(23, 3)), 'x');
+                        }
+                        else if (line.Contains("Click R"))
+                        {
+                            
+                        }
+                    }
+                } while (line != null);
             }
         }
 
