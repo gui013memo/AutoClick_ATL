@@ -1034,6 +1034,23 @@ namespace Auto_click_atlas_2
 
         }
 
+        private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Lista de instrucoes | *.txt";
+            sfd.ShowDialog();
+            
+            if(String.IsNullOrWhiteSpace(sfd.FileName) == false)
+            {
+                using (StreamWriter writer = new StreamWriter(sfd.FileName,false, System.Text.Encoding.UTF8))
+                {
+                    writer.Write(tb_instrucoes.Text);
+                    writer.Flush();
+                }
+            }
+
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Unsubscribe();

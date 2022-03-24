@@ -636,29 +636,33 @@ namespace Auto_click_atlas_2
             // carregarListaToolStripMenuItem
             // 
             this.carregarListaToolStripMenuItem.Name = "carregarListaToolStripMenuItem";
-            this.carregarListaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.carregarListaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.carregarListaToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.carregarListaToolStripMenuItem.Text = "Carregar lista";
             // 
             // salvarToolStripMenuItem
             // 
             this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.salvarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.salvarToolStripMenuItem.Text = "&Salvar";
+            this.salvarToolStripMenuItem.Click += new System.EventHandler(this.salvarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             // 
             // configuraçõesToolStripMenuItem
             // 
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
+            this.configuraçõesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
             this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.configuraçõesToolStripMenuItem.Text = "&Config";
             // 
