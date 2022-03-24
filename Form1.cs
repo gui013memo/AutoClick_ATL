@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Gma.System.MouseKeyHook;
+using System.IO;
 
 
 /*
@@ -421,15 +422,15 @@ namespace Auto_click_atlas_2
                 /*          MOUSE              */
 
                 //Click Esquerdo
-                if (e.KeyChar == 'e' || e.KeyChar == 'E')
-                    btn_Left.PerformClick();
+                /*if (e.KeyChar == 'e' || e.KeyChar == 'E')
+                    btn_Left.PerformClick();*/
 
-
+                /*
                 //Click Direito
                 if (e.KeyChar == 'd' || e.KeyChar == 'D')
                 {
                     btn_Right.PerformClick();
-                }
+                }*/
 
                 /*          MOUSE END           */
 
@@ -438,8 +439,9 @@ namespace Auto_click_atlas_2
                 {
                     btn_Pause.PerformClick();
                 }
+                
 
-                ////Select   **EM DESENVOLVIMENTO**
+                // --- SELECT --- TODO
                 //if (e.KeyChar == 's' || e.KeyChar == 'S')
                 //{
                 //    btn_Select.PerformClick();
@@ -618,25 +620,25 @@ namespace Auto_click_atlas_2
             }
         }
 
-        private void btn_Left_Click(object sender, EventArgs e)
-        {
-            if (cb_enable_btns.Checked)
-            {
-                tb_instrucoes.Text += string.Format(" Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
-                setInstructionList(x, y, '¬');
-            }
+        //private void btn_Left_Click(object sender, EventArgs e)
+        //{
+        //    if (cb_enable_btns.Checked)
+        //    {
+        //        tb_instrucoes.Text += string.Format(" Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
+        //        setInstructionList(x, y, '¬');
+        //    }
 
-        }
+        //}
 
-        private void btn_Right_Click(object sender, EventArgs e)
-        {
-            if (cb_enable_btns.Checked)
-            {
-                tb_instrucoes.Text += string.Format(" Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
-                setInstructionList(x, y, '¨');
-            }
+        //private void btn_Right_Click(object sender, EventArgs e)
+        //{
+        //    if (cb_enable_btns.Checked)
+        //    {
+        //        tb_instrucoes.Text += string.Format(" Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
+        //        setInstructionList(x, y, '¨');
+        //    }
 
-        }
+        //}
 
         private void btn_Pause_Click(object sender, EventArgs e)
         {
@@ -1027,7 +1029,10 @@ namespace Auto_click_atlas_2
 
         }
 
+        private void creditosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
 
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
