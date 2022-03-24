@@ -179,6 +179,8 @@ namespace Auto_click_atlas_2
         public void PauseBlinking()
         {
 
+
+
             gb_pause.BackColor = Color.Red;
             f_pause = true;
 
@@ -318,7 +320,8 @@ namespace Auto_click_atlas_2
 
         private void compara(String numero)
         {
-            tb_instrucoes.Text += "Comparando: " + numero + " com: " + tb_memoryValue.Text;
+            //tb_instrucoes.Text += "Comparando: " + numero + " com: " + tb_memoryValue.Text;
+            tb_instrucoes.Text += "Compare\r\n";
 
             if (string.Equals(numero, tb_memoryValue.Text))
             {
@@ -439,7 +442,7 @@ namespace Auto_click_atlas_2
                 {
                     btn_Pause.PerformClick();
                 }
-                
+
 
                 // --- SELECT --- TODO
                 //if (e.KeyChar == 's' || e.KeyChar == 'S')
@@ -1036,19 +1039,47 @@ namespace Auto_click_atlas_2
 
         private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           SaveFileDialog sfd = new SaveFileDialog();
+            SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Lista de instrucoes | *.txt";
             sfd.ShowDialog();
-            
-            if(String.IsNullOrWhiteSpace(sfd.FileName) == false)
+
+            if (String.IsNullOrWhiteSpace(sfd.FileName) == false)
             {
-                using (StreamWriter writer = new StreamWriter(sfd.FileName,false, System.Text.Encoding.UTF8))
+                using (StreamWriter writer = new StreamWriter(sfd.FileName, false, System.Text.Encoding.UTF8))
                 {
                     writer.Write(tb_instrucoes.Text);
                     writer.Flush();
                 }
             }
 
+        }
+
+        private void carregarListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Lista de instrucoes | *.txt";
+            ofd.ShowDialog();
+
+            lb_Arquivo_IL_util.Text = ofd.SafeFileName;
+
+            using (StreamReader reader = new StreamReader(ofd.FileName))
+            {
+                string line;
+
+                do 
+                {
+                    line = reader.ReadLine();
+                    //if(line == )
+                    tb_instrucoes.Text += line + "\r\n";
+
+
+
+
+                }while (line != null);
+
+
+
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
