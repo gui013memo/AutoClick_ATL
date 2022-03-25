@@ -196,32 +196,33 @@ namespace Auto_click_atlas_2
 
         public void PerformClick(int X, int Y, char Key)
         {
-
-
-            SetCursorPos(X, Y);
-
-            if (Key == '¬')
+            if (!f_stop)
             {
-                mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y, 0, 0);
-                System.Threading.Thread.Sleep(100);
-                mouse_event(MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+                SetCursorPos(X, Y);
 
-                System.Threading.Thread.Sleep(interval);
+                if (Key == '¬')
+                {
+                    mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y, 0, 0);
+                    System.Threading.Thread.Sleep(100);
+                    mouse_event(MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
 
-            }
-            else if (Key == '¨')
-            {
-                mouse_event(MOUSEEVENTF_RIGHTDOWN, X, Y, 2, 0);
-                System.Threading.Thread.Sleep(100);
-                mouse_event(MOUSEEVENTF_RIGHTUP, X, Y, 2, 0);
+                    System.Threading.Thread.Sleep(interval);
 
-                System.Threading.Thread.Sleep(interval);
+                }
+                else if (Key == '¨')
+                {
+                    mouse_event(MOUSEEVENTF_RIGHTDOWN, X, Y, 2, 0);
+                    System.Threading.Thread.Sleep(100);
+                    mouse_event(MOUSEEVENTF_RIGHTUP, X, Y, 2, 0);
 
-            }
-            else if (Key == '$')
-            {
+                    System.Threading.Thread.Sleep(interval);
 
-                PauseBlinking();
+                }
+                else if (Key == '$')
+                {
+
+                    PauseBlinking();
+                }
 
                 //gb_pause.BackColor = Color.Red;
                 //f_pause = true;
@@ -698,218 +699,164 @@ namespace Auto_click_atlas_2
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            Thread thread1 = new Thread(t =>
-    {
-        startState = 1;
 
+            startState++;
 
-        /*if (f_stop == true)
-        {
-            thread1.Suspend();
-        }*/
-
-        if (startState == 1 && f_stop != true && f_btn_record != true && cb_enable_btns.Checked == true)
-        {
-            f_Start = true;
-
-            //btn_Start.BackColor = Color.OrangeRed;
-            //btn_Start.Text = "Running!";
-            //System.Threading.Thread.Sleep(1000);
-
-            btn_Start.Text = "RUNNING!";
-            btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
-            btn_Start.Refresh();
-
-
-            //Int16.TryParse(tb_repete.Text, out short repeticoes);
-            restante = repeticoes;
-            tb_restante.Text = restante.ToString();
-            tb_restante.Refresh();
-            restante++;
-
-
-
-            //if (Instrucoes_1[0] == null)
-            //    tb_instrucoes.Text += "Instructions 1 NULO!!!";
-
-
-
-
-
-            //tb_instrucoes.Text += "Modo multi!";
-
-            do
+            if (startState == 1 && !f_stop && !f_btn_record && cb_enable_btns.Checked)
             {
-
-                //Instruction list global
-                for (byte i = 0; i < Instrucoes_Global.Length; i++)
+                Thread thread1 = new Thread(t =>
                 {
-
-                    lb_currentMode.Text = "P".ToString();
-
-                    if (Instrucoes_Global[i] == null)
-                        break;
-
-                    PerformClick(Instrucoes_Global[i].X, Instrucoes_Global[i].Y, Instrucoes_Global[i].Key);
-                }
-
-                if (cb_multi_Instructions.Checked && !f_stop)
-                {
-
-                    PauseBlinking();
-
-                    switch (modeSelected)
                     {
-                        case 1:
-                            //Instruction list 1
-                            lb_currentMode.Text = '1'.ToString();
-                            for (byte i = 0; i < Instrucoes_1.Length; i++)
-                            {
-                                if (Instrucoes_1[i] == null)
-                                    break;
+                        f_Start = true;
 
-                                PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
-                            }
-                            break;
+                        btn_Start.Text = "RUNNING!";
+                        btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
+                        btn_Start.Refresh();
 
-                        case 2:
-                            //Instruction list 2
-                            lb_currentMode.Text = '2'.ToString();
-                            for (byte i = 0; i < Instrucoes_2.Length; i++)
-                            {
-                                if (Instrucoes_2[i] == null)
-                                    break;
+                        repeticoes++;
+                        tb_restante.Text = repeticoes.ToString();
+                        tb_restante.Refresh();
 
-                                PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
-                            }
-                            break;
-
-                        case 3:
-                            //Instruction list 3
-                            lb_currentMode.Text = '3'.ToString();
-                            for (byte i = 0; i < Instrucoes_3.Length; i++)
-                            {
-                                if (Instrucoes_3[i] == null)
-                                    break;
-
-                                PerformClick(Instrucoes_3[i].X, Instrucoes_3[i].Y, Instrucoes_3[i].Key);
-                            }
-                            break;
-
-                        case 4:
-                            //Instruction list 4
-                            lb_currentMode.Text = '4'.ToString();
-                            for (byte i = 0; i < Instrucoes_4.Length; i++)
-                            {
-                                if (Instrucoes_4[i] == null)
-                                    break;
-
-                                PerformClick(Instrucoes_4[i].X, Instrucoes_4[i].Y, Instrucoes_4[i].Key);
-                            }
-                            break;
-
-                        case 5:
-                            //Instruction list 5
-                            lb_currentMode.Text = '5'.ToString();
-                            for (byte i = 0; i < Instrucoes_5.Length; i++)
-                            {
-                                if (Instrucoes_5[i] == null)
-                                    break;
-
-                                PerformClick(Instrucoes_5[i].X, Instrucoes_5[i].Y, Instrucoes_5[i].Key);
-                            }
-                            break;
-                    }
-
-
-
-
-
-
-
-
-
-
-                }
-
-                if (cb_consulta.Checked && !f_stop)
-                {
-                    if (lb_compareResult.Text == "1")
-                    {
-                        //Instruction list 1
-                        lb_currentMode.Text = "CAD".ToString();
-                        for (byte i = 0; i < Instrucoes_1.Length; i++)
+                        do
                         {
-                            if (Instrucoes_1[i] == null)
-                                break;
+                            //Instruction list global
+                            for (byte i = 0; i < Instrucoes_Global.Length; i++)
+                            {
+                                lb_currentMode.Text = "STD".ToString();
 
-                            PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
-                        }
+                                if (Instrucoes_Global[i] == null || f_stop) //VERIFICA SE O ARRAY ESTA VAZIO
+                                {
+                                    if (Instrucoes_Global[0] == null)
+                                    {
+                                        MessageBox.Show("Nao há instrucoes a executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
+                                    }
+                                    break;
+                                }
+
+                                PerformClick(Instrucoes_Global[i].X, Instrucoes_Global[i].Y, Instrucoes_Global[i].Key);
+                            }
+
+                            if (cb_multi_Instructions.Checked && !f_stop)
+                            {
+                                PauseBlinking();
+
+                                switch (modeSelected)
+                                {
+                                    case 1:
+                                        //Instruction list 1
+                                        lb_currentMode.Text = '1'.ToString();
+                                        for (byte i = 0; i < Instrucoes_1.Length; i++)
+                                        {
+                                            if (Instrucoes_1[i] == null)
+                                                break;
+
+                                            PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
+                                        }
+                                        break;
+
+                                    case 2:
+                                        //Instruction list 2
+                                        lb_currentMode.Text = '2'.ToString();
+                                        for (byte i = 0; i < Instrucoes_2.Length; i++)
+                                        {
+                                            if (Instrucoes_2[i] == null)
+                                                break;
+
+                                            PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
+                                        }
+                                        break;
+
+                                    case 3:
+                                        //Instruction list 3
+                                        lb_currentMode.Text = '3'.ToString();
+                                        for (byte i = 0; i < Instrucoes_3.Length; i++)
+                                        {
+                                            if (Instrucoes_3[i] == null)
+                                                break;
+
+                                            PerformClick(Instrucoes_3[i].X, Instrucoes_3[i].Y, Instrucoes_3[i].Key);
+                                        }
+                                        break;
+
+                                    case 4:
+                                        //Instruction list 4
+                                        lb_currentMode.Text = '4'.ToString();
+                                        for (byte i = 0; i < Instrucoes_4.Length; i++)
+                                        {
+                                            if (Instrucoes_4[i] == null)
+                                                break;
+
+                                            PerformClick(Instrucoes_4[i].X, Instrucoes_4[i].Y, Instrucoes_4[i].Key);
+                                        }
+                                        break;
+
+                                    case 5:
+                                        //Instruction list 5
+                                        lb_currentMode.Text = '5'.ToString();
+                                        for (byte i = 0; i < Instrucoes_5.Length; i++)
+                                        {
+                                            if (Instrucoes_5[i] == null)
+                                                break;
+
+                                            PerformClick(Instrucoes_5[i].X, Instrucoes_5[i].Y, Instrucoes_5[i].Key);
+                                        }
+                                        break;
+                                }
+                            }
+
+                            if (cb_consulta.Checked && !f_stop)
+                            {
+                                if (lb_compareResult.Text == "1")
+                                {
+                                    //Instruction list 1
+                                    lb_currentMode.Text = "CAD".ToString();
+                                    for (byte i = 0; i < Instrucoes_1.Length; i++)
+                                    {
+                                        if (Instrucoes_1[i] == null)
+                                            break;
+
+                                        PerformClick(Instrucoes_1[i].X, Instrucoes_1[i].Y, Instrucoes_1[i].Key);
+                                    }
+                                }
+                                else
+                                {
+                                    //Instruction list 2
+                                    lb_currentMode.Text = "ALT".ToString();
+                                    for (byte i = 0; i < Instrucoes_2.Length; i++)
+                                    {
+                                        if (Instrucoes_2[i] == null)
+                                            break;
+
+                                        PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
+                                    }
+                                }
+
+
+                            }
+
+                            repeticoes--;
+                            tb_restante.Text = repeticoes.ToString();
+                            tb_restante.Refresh();
+
+                        } while (repeticoes > 0 && cb_repete.Checked && !f_stop);
                     }
-                    else
-                    {
-                        //Instruction list 2
-                        lb_currentMode.Text = "ALT".ToString();
-                        for (byte i = 0; i < Instrucoes_2.Length; i++)
-                        {
-                            if (Instrucoes_2[i] == null)
-                                break;
 
-                            PerformClick(Instrucoes_2[i].X, Instrucoes_2[i].Y, Instrucoes_2[i].Key);
-                        }
-                    }
+                    btn_Start.Text = "START (S)";
+                    btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
+                    btn_Start.Refresh();
 
+                    startState = 0;
+                    f_Start = false;
+                    //if (indicesVazios == Instrucoes_Global.Length)
+                    //  MessageBox.Show(new Form { TopMost = true }, "Não há Instrucoes para executar!!");
 
                 }
+   )
+                { IsBackground = true };
+                thread1.Start();
+            }
 
-                repeticoes--;
-                tb_restante.Text = repeticoes.ToString();
-                tb_restante.Refresh();
-
-            } while (repeticoes > 0 && cb_repete.Checked && !f_stop);
-
-
-
-
-            //else
-            //{
-            //    do
-            //    {
-            //        for (byte j = 0; j < Instrucoes_Global.Length; j++)
-            //        {
-
-            //            tb_restante.Text = restante.ToString();
-            //            tb_restante.Refresh();
-
-            //            if (Instrucoes_Global[j] != null && f_stop != true)
-            //                PerformClick(Instrucoes_Global[j].X, Instrucoes_Global[j].Y, Instrucoes_Global[j].Key);
-            //        }
-
-
-
-        }
-
-
-
-
-
-
-
-        btn_Start.Text = "START (S)";
-        btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
-        btn_Start.Refresh();
-
-        startState = 0;
-        f_Start = false;
-
-
-        //if (indicesVazios == Instrucoes_Global.Length)
-        //  MessageBox.Show(new Form { TopMost = true }, "Não há Instrucoes para executar!!");
-
-    }
-    )
-            { IsBackground = true };
-            thread1.Start();
         }
 
         private void btn_Continue_Click(object sender, EventArgs e)
@@ -1074,12 +1021,27 @@ namespace Auto_click_atlas_2
                     {
                         if (line.Contains("Click L"))
                         {
-                            tb_instrucoes.Text += line.Substring(13, 4) + "\r\n";
-                            setInstructionList(Int16.Parse(line.Substring(13, 4)), Int16.Parse(line.Substring(23, 3)), 'x');
+                            tb_instrucoes.Text += line + "\r\n";
+
+                            string teste = " 12  ";
+                            
+                            Int16.TryParse(teste, out short xteste);
+
+
+
+                            Int16.TryParse(line.Substring(13, 4), out short xParsed);
+                            Int16.TryParse(line.Substring(22, (line.Length - 22)), out short yParsed);
+
+                            setInstructionList(xParsed, yParsed, '¬');
                         }
                         else if (line.Contains("Click R"))
                         {
-                            
+                            tb_instrucoes.Text += line + "\r\n";
+
+                            Int16.TryParse(line.Substring(13, 4), out short xParsed);
+                            Int16.TryParse(line.Substring(22, (line.Length - 22)), out short yParsed);
+
+                            setInstructionList(xParsed, yParsed, '¨'); 
                         }
                     }
                 } while (line != null);
