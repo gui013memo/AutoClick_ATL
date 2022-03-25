@@ -32,11 +32,11 @@ using System.IO;
 /*
  * TODO:
  *      
- *      Modo BLM Torque         -> Comparacao
+ *      Modo BLM Torque         -> Comparacao DONE
  *      
  * Inserir:
- *      Menu "Arquivo"          -> salvar e carregar 
- *      Menu "Configurações"    ->
+ *      Menu "Arquivo"          -> salvar e carregar DONE
+ *      Menu "Configurações"    -> 
  *      Menu "Modo"             -> Generico, BLM Torque
  *      Menu "Creditos"         -> Desenvolvedor, link GitHub
  *     
@@ -471,6 +471,8 @@ namespace Auto_click_atlas_2
                 //STOP
                 if (e.KeyChar == ' ')
                 {
+                    var form = new Form2();
+                    form.Show();
                     Stop_Execution();
                 }
 
@@ -701,9 +703,9 @@ namespace Auto_click_atlas_2
         {
 
             startState++;
-
-            if (startState == 1 && !f_stop && !f_btn_record && cb_enable_btns.Checked)
-            {
+            
+                if (startState == 1 && !f_stop && !f_btn_record && cb_enable_btns.Checked)
+                {
                 Thread thread1 = new Thread(t =>
                 {
                     {
@@ -852,9 +854,10 @@ namespace Auto_click_atlas_2
                     //  MessageBox.Show(new Form { TopMost = true }, "Não há Instrucoes para executar!!");
 
                 }
-   )
+)
                 { IsBackground = true };
                 thread1.Start();
+
             }
 
         }
@@ -869,10 +872,10 @@ namespace Auto_click_atlas_2
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            tb_instrucoes.Text = null;  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
+            tb_instrucoes.Text = "";  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
 
-
+            
             Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
             Array.Clear(Instrucoes_1, 0, Instrucoes_1.Length);
             Array.Clear(Instrucoes_2, 0, Instrucoes_2.Length);
@@ -981,7 +984,8 @@ namespace Auto_click_atlas_2
 
         private void creditosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+          //MessageBox.Show()
+          
         }
 
         private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
