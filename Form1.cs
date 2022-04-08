@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using Gma.System.MouseKeyHook;
 using System.IO;
 
@@ -258,16 +259,21 @@ namespace Auto_click_atlas_2
             if (stopState == 1)
             {
                 f_stop = true;
-                btn_Stop.BackColor = Color.Yellow;
-                btn_Stop.Text = "TRAVADO!";
+                btn_Stop.BackColor = Color.DarkRed;
+                btn_Stop.ForeColor = Color.White;
+                btn_Stop.Text = "LOCKED!";
+                gb_pause.BackColor = Color.Red;
+                repeticoes = 0;
+                tb_restante.Text = "0";
             }
             else if (stopState == 2)
             {
                 f_stop = false;
                 stopState = 0;
-                btn_Stop.BackColor = Color.Red;
-                btn_Stop.Text = "Interromper (Space)";
-
+                btn_Stop.BackColor = Color.Gold;
+                btn_Stop.ForeColor = Color.Black;
+                btn_Stop.Text = "Stop (Space)";
+                gb_pause.BackColor = Color.Transparent;
             }
         }
 
@@ -442,6 +448,7 @@ namespace Auto_click_atlas_2
                 if (e.KeyChar == 'p' || e.KeyChar == 'P')
                 {
                     btn_Pause.PerformClick();
+                    instructionQuantity++;
                 }
 
 
@@ -471,8 +478,6 @@ namespace Auto_click_atlas_2
                 //STOP
                 if (e.KeyChar == ' ')
                 {
-                    var form = new Form2();
-                    form.Show();
                     Stop_Execution();
                 }
 
@@ -703,9 +708,9 @@ namespace Auto_click_atlas_2
         {
 
             startState++;
-            
-                if (startState == 1 && !f_stop && !f_btn_record && cb_enable_btns.Checked)
-                {
+
+            if (startState == 1 && !f_stop && !f_btn_record && cb_enable_btns.Checked)
+            {
                 Thread thread1 = new Thread(t =>
                 {
                     {
@@ -839,13 +844,15 @@ namespace Auto_click_atlas_2
 
                             repeticoes--;
                             tb_restante.Text = repeticoes.ToString();
+                            if (f_stop)
+                                tb_restante.Text = "0";
                             tb_restante.Refresh();
 
-                        } while (repeticoes > 0 && cb_repete.Checked && !f_stop);
+                        } while (repeticoes > 0 && !f_stop);
                     }
 
                     btn_Start.Text = "START (S)";
-                    btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
+                    //btn_Start.BackColor = Color.ForestGreen; btn_Start.ForeColor = Color.White;
                     btn_Start.Refresh();
 
                     startState = 0;
@@ -875,7 +882,7 @@ namespace Auto_click_atlas_2
             tb_instrucoes.Text = "";  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
 
-            
+
             Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
             Array.Clear(Instrucoes_1, 0, Instrucoes_1.Length);
             Array.Clear(Instrucoes_2, 0, Instrucoes_2.Length);
@@ -899,17 +906,7 @@ namespace Auto_click_atlas_2
         /* --- BUTTONS END --- */
 
         /* ---- CHECK BOX ---- */
-        private void cb_repete_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cb_repete.Checked == true)
-            {
-                tb_repete.Enabled = true;
-            }
-            else
-            {
-                tb_repete.Enabled = false;
-            }
-        }
+
         private void cb_enable_btns_CheckedChanged(object sender, EventArgs e)
         {
             this.ActiveControl = null;  //Para tirar o foco do cb e nao ser checado pela tecla SPACE
@@ -984,8 +981,9 @@ namespace Auto_click_atlas_2
 
         private void creditosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-          //MessageBox.Show()
-          
+            var form = new form2{ TopMost = true };
+            form.Show();
+
         }
 
         private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1028,7 +1026,7 @@ namespace Auto_click_atlas_2
                             tb_instrucoes.Text += line + "\r\n";
 
                             string teste = " 12  ";
-                            
+
                             Int16.TryParse(teste, out short xteste);
 
 
@@ -1045,11 +1043,16 @@ namespace Auto_click_atlas_2
                             Int16.TryParse(line.Substring(13, 4), out short xParsed);
                             Int16.TryParse(line.Substring(22, (line.Length - 22)), out short yParsed);
 
-                            setInstructionList(xParsed, yParsed, '¨'); 
+                            setInstructionList(xParsed, yParsed, '¨');
                         }
                     }
                 } while (line != null);
             }
+        }
+
+        private void lb_currentMode_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
