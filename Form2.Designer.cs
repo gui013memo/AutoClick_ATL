@@ -64,10 +64,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(272, 315);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(266, 313);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 32);
+            this.label2.Size = new System.Drawing.Size(102, 37);
             this.label2.TabIndex = 2;
             this.label2.Text = "GitHub";
             // 

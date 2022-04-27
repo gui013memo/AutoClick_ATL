@@ -9,8 +9,8 @@ using Gma.System.MouseKeyHook;
 using System.IO;
 
 
-/*
- *      Instruções MouseKeyHook:
+/*Instruções MouseKeyHook:
+ *      
  *  
  *          1 - Para utilizar função Chamar no metodo "Subscribe" com "+=" e tambem no "Unsibscribe" com "-=" 
  *          
@@ -30,26 +30,25 @@ using System.IO;
  * 
  * */
 
-/*
- * TODO:
+/*TODO
+ *   !Resolver 
+ *      - thread usando comando criado em outra thread impedindo o debug de funcionar (debugar e startar
+ *      programa com instrucoes para observar este erro)!
+ *      - Salvamento
+ * 
+ *   
+ * Current:
  *      
- *      Modo BLM Torque         -> Comparacao DONE
- *      
- * Inserir:
- *      Menu "Arquivo"          -> salvar e carregar DONE
- *      Menu "Configurações"    -> 
- *      Menu "Modo"             -> Generico, BLM Torque
- *      Menu "Creditos"         -> Desenvolvedor, link GitHub
+ *     Comparação, botao ou lista suspensa, igual, maior ou igual
  *     
- *      ~ Tela de loading
- * 
- * Melhoria:
- *      Verificar campo "RESTANTE" no momento em que a tecla "espaço" pausa o programa
+ * Next:
  *      
- * 
- * 
- *  
- * 
+ *      Criar função wait 
+ *      Manipular diretamenta area de transf.
+ *      Criar modo de gravação de teclas direto do teclado fisico, ausentando o virtual (foco nas combinações)
+ *      Alocaçao de memoria, mudar para dinamica conforme solicitação do user, nao estatico.
+ *                                  
+ *     
  */
 
 
@@ -343,6 +342,13 @@ namespace Auto_click_atlas_2
 
         }
 
+        private void InstructionQuantityIncrease()
+        {
+            instructionQuantity++;
+            lb_instructions_quantity.Text = instructionQuantity.ToString();
+            tb_instrucoes.SelectionStart = tb_instrucoes.TextLength;
+            tb_instrucoes.ScrollToCaret();
+        }
 
         private void M_Events_MouseMove(object sender, MouseEventArgs e)
         {
@@ -366,8 +372,9 @@ namespace Auto_click_atlas_2
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    instructionQuantity++;
-                    lb_instructions_quantity.Text = instructionQuantity.ToString();
+                    // instructionQuantity++;
+                    //  lb_instructions_quantity.Text = instructionQuantity.ToString();
+                    InstructionQuantityIncrease();
 
                     tb_instrucoes.Text += string.Format("Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
                     setInstructionList(x, y, '¬');
@@ -449,6 +456,7 @@ namespace Auto_click_atlas_2
                 {
                     btn_Pause.PerformClick();
                     instructionQuantity++;
+                    lb_instructions_quantity.Text = instructionQuantity.ToString();
                 }
 
 
@@ -587,6 +595,8 @@ namespace Auto_click_atlas_2
                 f_mode = 1;
                 instructionNumber = 0;
                 tb_instrucoes.Text += "Inicio modo 1";
+                instructionQuantity++;
+                lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
 
         }
@@ -598,6 +608,8 @@ namespace Auto_click_atlas_2
                 f_mode = 2;
                 instructionNumber = 0;
                 tb_instrucoes.Text += "Inicio modo 2";
+                instructionQuantity++;
+                lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
         }
 
@@ -608,6 +620,8 @@ namespace Auto_click_atlas_2
                 f_mode = 3;
                 instructionNumber = 0;
                 tb_instrucoes.Text += "Inicio modo 3";
+                instructionQuantity++;
+                lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
         }
 
@@ -618,6 +632,8 @@ namespace Auto_click_atlas_2
                 f_mode = 4;
                 instructionNumber = 0;
                 tb_instrucoes.Text += "Inicio modo 4";
+                instructionQuantity++;
+                lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
         }
 
@@ -628,6 +644,8 @@ namespace Auto_click_atlas_2
                 f_mode = 5;
                 instructionNumber = 0;
                 tb_instrucoes.Text += "Inicio modo 5";
+                instructionQuantity++;
+                lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
         }
 
@@ -735,7 +753,9 @@ namespace Auto_click_atlas_2
                                 {
                                     if (Instrucoes_Global[0] == null)
                                     {
-                                        MessageBox.Show("Nao há instrucoes a executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        Form frm = new Form { TopMost = true };
+                                        //MessageBox.Show("Nao há instrucoes a executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        MessageBox.Show(new Form { TopMost = true }, "Nao há instrucoes para executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         break;
                                     }
                                     break;
@@ -844,8 +864,10 @@ namespace Auto_click_atlas_2
 
                             repeticoes--;
                             tb_restante.Text = repeticoes.ToString();
+
                             if (f_stop)
                                 tb_restante.Text = "0";
+
                             tb_restante.Refresh();
 
                         } while (repeticoes > 0 && !f_stop);
@@ -881,15 +903,20 @@ namespace Auto_click_atlas_2
         {
             tb_instrucoes.Text = "";  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
-
-
             Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
             Array.Clear(Instrucoes_1, 0, Instrucoes_1.Length);
             Array.Clear(Instrucoes_2, 0, Instrucoes_2.Length);
             Array.Clear(Instrucoes_3, 0, Instrucoes_3.Length);
             Array.Clear(Instrucoes_4, 0, Instrucoes_4.Length);
             Array.Clear(Instrucoes_5, 0, Instrucoes_5.Length);
+
+
+
+            instructionNumber = 0;
+            f_mode = 0;
+            instructionQuantity = 0;
             lb_instructions_quantity.Text = "0";
+
 
             //Array.Clear(Instrucoes_Global, instructionNumber, 1);
 
@@ -981,7 +1008,7 @@ namespace Auto_click_atlas_2
 
         private void creditosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var form = new form2{ TopMost = true };
+            var form = new form2 { TopMost = true };
             form.Show();
 
         }
