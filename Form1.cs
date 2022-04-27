@@ -47,6 +47,7 @@ using System.IO;
  *      Manipular diretamenta area de transf.
  *      Criar modo de gravação de teclas direto do teclado fisico, ausentando o virtual (foco nas combinações)
  *      Alocaçao de memoria, mudar para dinamica conforme solicitação do user, nao estatico.
+ *      auto rolagem da lista de instrucoes
  *                                  
  *     
  */
@@ -105,7 +106,6 @@ namespace Auto_click_atlas_2
         //GENERAL PURPOUSE
         short interval = 0;
         short repeticoes = 0;
-        short restante = 0;
         byte f_mode = 0;
         byte modeSelected = 0;
 
@@ -324,21 +324,59 @@ namespace Auto_click_atlas_2
 
         // 
 
-        private void compara(String numero)
+        private void compara(String numero, char operador)
         {
             //tb_instrucoes.Text += "Comparando: " + numero + " com: " + tb_memoryValue.Text;
             tb_instrucoes.Text += "Compare\r\n";
 
-            if (string.Equals(numero, tb_memoryValue.Text))
+            switch (operador)
             {
-                lb_compareResult.Text = "1";
-                lb_compareResult.BackColor = Color.LightGreen;
+                case '=':
+                    if (string.Equals(numero, tb_memoryValue.Text))
+                    {
+                        lb_compareResult.Text = "1";
+                        lb_compareResult.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        lb_compareResult.Text = "0";
+                        lb_compareResult.BackColor = Color.IndianRed;
+                    }
+                    break;
+                default:
+                    Int16.TryParse(numero, out short numeroParsed);
+                    Int16.TryParse(tb_memoryValue.Text, out short tb_memoryValueParsed);
+
+                    if (operador == '<')
+                    {
+                        if (numeroParsed < tb_memoryValueParsed)
+                        {
+                            lb_compareResult.Text = "1";
+                            lb_compareResult.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            lb_compareResult.Text = "0";
+                            lb_compareResult.BackColor = Color.IndianRed;
+                        }
+                    }
+                    else
+                    {
+                        if (numeroParsed < tb_memoryValueParsed)
+                        {
+                            lb_compareResult.Text = "1";
+                            lb_compareResult.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            lb_compareResult.Text = "0";
+                            lb_compareResult.BackColor = Color.IndianRed;
+                        }
+                    }
+
+                    break;
             }
-            else
-            {
-                lb_compareResult.Text = "0";
-                lb_compareResult.BackColor = Color.IndianRed;
-            }
+
 
         }
 
@@ -925,9 +963,19 @@ namespace Auto_click_atlas_2
             //lb_instructions_quantity.Text = instructionQuantity.ToString();
         }
 
-        private void btn_verificar_Click(object sender, EventArgs e)
+        private void btn_compare_equal_Click(object sender, EventArgs e)
         {
-            compara(tb_Consulta.Text);
+            compara(tb_Consulta.Text, '=');
+        }
+
+        private void btn_compare_less_Click(object sender, EventArgs e)
+        {
+            compara(tb_Consulta.Text, '<');
+        }
+
+        private void btn_compare_greater_Click(object sender, EventArgs e)
+        {
+            compara(tb_Consulta.Text, '>');
         }
 
         /* --- BUTTONS END --- */
@@ -1081,6 +1129,8 @@ namespace Auto_click_atlas_2
         {
 
         }
+
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

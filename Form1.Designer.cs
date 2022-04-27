@@ -52,8 +52,6 @@ namespace Auto_click_atlas_2
             this.btn_compare_greater = new System.Windows.Forms.Button();
             this.btn_compare_less = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.tb_Previsao = new System.Windows.Forms.TextBox();
-            this.lb_prazo = new System.Windows.Forms.Label();
             this.lb_Arquivo_IL_util = new System.Windows.Forms.Label();
             this.lb_Arquivo_IL = new System.Windows.Forms.Label();
             this.tb_memoryValue = new System.Windows.Forms.TextBox();
@@ -64,6 +62,8 @@ namespace Auto_click_atlas_2
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lb_modo = new System.Windows.Forms.Label();
             this.lb_currentMode = new System.Windows.Forms.Label();
+            this.tb_Previsao = new System.Windows.Forms.TextBox();
+            this.lb_prazo = new System.Windows.Forms.Label();
             this.btn_Continue = new System.Windows.Forms.Button();
             this.cb_multi_Instructions = new System.Windows.Forms.CheckBox();
             this.lb_Duplo = new System.Windows.Forms.Label();
@@ -350,6 +350,7 @@ namespace Auto_click_atlas_2
             this.btn_compare_greater.TabIndex = 56;
             this.btn_compare_greater.Text = "<";
             this.btn_compare_greater.UseVisualStyleBackColor = false;
+            this.btn_compare_greater.Click += new System.EventHandler(this.btn_compare_greater_Click);
             // 
             // btn_compare_less
             // 
@@ -363,6 +364,7 @@ namespace Auto_click_atlas_2
             this.btn_compare_less.TabIndex = 55;
             this.btn_compare_less.Text = ">";
             this.btn_compare_less.UseVisualStyleBackColor = false;
+            this.btn_compare_less.Click += new System.EventHandler(this.btn_compare_less_Click);
             // 
             // label1
             // 
@@ -373,28 +375,6 @@ namespace Auto_click_atlas_2
             this.label1.Size = new System.Drawing.Size(44, 15);
             this.label1.TabIndex = 54;
             this.label1.Text = "Repetir";
-            // 
-            // tb_Previsao
-            // 
-            this.tb_Previsao.Enabled = false;
-            this.tb_Previsao.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tb_Previsao.Location = new System.Drawing.Point(316, 579);
-            this.tb_Previsao.Name = "tb_Previsao";
-            this.tb_Previsao.ReadOnly = true;
-            this.tb_Previsao.Size = new System.Drawing.Size(78, 31);
-            this.tb_Previsao.TabIndex = 52;
-            this.tb_Previsao.Text = "0";
-            this.tb_Previsao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lb_prazo
-            // 
-            this.lb_prazo.AutoSize = true;
-            this.lb_prazo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_prazo.Location = new System.Drawing.Point(319, 534);
-            this.lb_prazo.Name = "lb_prazo";
-            this.lb_prazo.Size = new System.Drawing.Size(68, 21);
-            this.lb_prazo.TabIndex = 53;
-            this.lb_prazo.Text = "Prazo p/";
             // 
             // lb_Arquivo_IL_util
             // 
@@ -425,7 +405,7 @@ namespace Auto_click_atlas_2
             this.tb_memoryValue.Name = "tb_memoryValue";
             this.tb_memoryValue.Size = new System.Drawing.Size(118, 23);
             this.tb_memoryValue.TabIndex = 49;
-            this.tb_memoryValue.Text = "0601-110163-001";
+            this.tb_memoryValue.Text = "Valor p/ comparar";
             this.tb_memoryValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_compare_equal
@@ -440,7 +420,6 @@ namespace Auto_click_atlas_2
             this.btn_compare_equal.TabIndex = 46;
             this.btn_compare_equal.Text = "==";
             this.btn_compare_equal.UseVisualStyleBackColor = false;
-            this.btn_compare_equal.Click += new System.EventHandler(this.btn_verificar_Click);
             // 
             // lb_compareResult
             // 
@@ -469,9 +448,9 @@ namespace Auto_click_atlas_2
             this.lb_Consulta.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_Consulta.Location = new System.Drawing.Point(264, 14);
             this.lb_Consulta.Name = "lb_Consulta";
-            this.lb_Consulta.Size = new System.Drawing.Size(90, 25);
+            this.lb_Consulta.Size = new System.Drawing.Size(95, 25);
             this.lb_Consulta.TabIndex = 33;
-            this.lb_Consulta.Text = "Consulta";
+            this.lb_Consulta.Text = "Consulta:";
             // 
             // groupBox1
             // 
@@ -504,6 +483,28 @@ namespace Auto_click_atlas_2
             this.lb_currentMode.TabIndex = 34;
             this.lb_currentMode.Text = "STD";
             this.lb_currentMode.Click += new System.EventHandler(this.lb_currentMode_Click);
+            // 
+            // tb_Previsao
+            // 
+            this.tb_Previsao.Enabled = false;
+            this.tb_Previsao.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tb_Previsao.Location = new System.Drawing.Point(316, 579);
+            this.tb_Previsao.Name = "tb_Previsao";
+            this.tb_Previsao.ReadOnly = true;
+            this.tb_Previsao.Size = new System.Drawing.Size(78, 31);
+            this.tb_Previsao.TabIndex = 52;
+            this.tb_Previsao.Text = "0";
+            this.tb_Previsao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_prazo
+            // 
+            this.lb_prazo.AutoSize = true;
+            this.lb_prazo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_prazo.Location = new System.Drawing.Point(319, 534);
+            this.lb_prazo.Name = "lb_prazo";
+            this.lb_prazo.Size = new System.Drawing.Size(68, 21);
+            this.lb_prazo.TabIndex = 53;
+            this.lb_prazo.Text = "Prazo p/";
             // 
             // btn_Continue
             // 
