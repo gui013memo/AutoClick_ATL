@@ -34,7 +34,7 @@ using System.IO;
  *   !Resolver 
  *      - thread usando comando criado em outra thread impedindo o debug de funcionar (debugar e startar
  *      programa com instrucoes para observar este erro)!
- *      - Salvamento
+ *      - arquivo salvo quando usado replica clicks em lugares errados
  * 
  *   
  * Current:
