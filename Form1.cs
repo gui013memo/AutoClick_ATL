@@ -33,23 +33,25 @@ using System.IO;
 /*TODO
  *   !Resolver 
  *      - thread usando comando criado em outra thread impedindo o debug de funcionar (debugar e startar
- *      programa com instrucoes para observar este erro)!
+ *      programa com instrucoes para observar este erro)! **DELEGATE**
+ *      
  *      - arquivo salvo quando usado replica clicks em lugares errados
- * 
- *   
+ *    
  * Current:
  *      
- *     Comparação, botao ou lista suspensa, igual, maior ou igual
+ *      Modificar "limpa" para limpar All e limpar ultima instrucao 
  *     
  * Next:
+ * 
+ * Criar função wait com caixa de dialogo para delay especifico em momentos da lista
  *      
- *      Criar função wait 
- *      Manipular diretamenta area de transf.
- *      Criar modo de gravação de teclas direto do teclado fisico, ausentando o virtual (foco nas combinações)
+ *      Manipular diretamenta area de transf. para ganhar tempo sem precisar usar Ctrl+V ou demais 
+ *      1 - Criar modo de gravação de teclas direto do teclado fisico, ausentando o virtual (foco nas combinações)
  *      Alocaçao de memoria, mudar para dinamica conforme solicitação do user, nao estatico.
  *      auto rolagem da lista de instrucoes
- *                                  
- *     
+ *           
+ *           
+ *      *     DONE - Comparação, == / > / <      
  */
 
 
@@ -126,6 +128,7 @@ namespace Auto_click_atlas_2
         public Form1()
         {
             InitializeComponent();
+
         }
 
 
@@ -362,7 +365,7 @@ namespace Auto_click_atlas_2
                     }
                     else
                     {
-                        if (numeroParsed < tb_memoryValueParsed)
+                        if (numeroParsed > tb_memoryValueParsed)
                         {
                             lb_compareResult.Text = "1";
                             lb_compareResult.BackColor = Color.LightGreen;
@@ -547,7 +550,7 @@ namespace Auto_click_atlas_2
                     {
                         f_pause = false;
                         modeSelected = 1;
-                        tb_instrucoes.Text += "MODE 1 SELECIONADO!";
+                        tb_instrucoes.Text += "MODE 1 SELECIONADO!\r\n";
                     }
 
                     //Executa modo 2
@@ -555,30 +558,32 @@ namespace Auto_click_atlas_2
                     {
                         f_pause = false;
                         modeSelected = 2;
-                        tb_instrucoes.Text += "MODE 2 SELECIONADO!";
+                        tb_instrucoes.Text += "MODE 2 SELECIONADO!\r\n";
                     }
                     //Executa modo 3
                     if (e.KeyChar == '3')
                     {
                         f_pause = false;
                         modeSelected = 3;
-                        tb_instrucoes.Text += "MODE 3 SELECIONADO!";
+                        tb_instrucoes.Text += "MODE 3 SELECIONADO!\r\n";
                     }
                     //Executa modo 4
                     if (e.KeyChar == '4')
                     {
                         f_pause = false;
                         modeSelected = 4;
-                        tb_instrucoes.Text += "MODE 4 SELECIONADO!";
+                        tb_instrucoes.Text += "MODE 4 SELECIONADO!\r\n";
                     }
                     //Executa modo 5
                     if (e.KeyChar == '5')
                     {
                         f_pause = false;
                         modeSelected = 5;
-                        tb_instrucoes.Text += "MODE 5 SELECIONADO!";
+                        tb_instrucoes.Text += "MODE 5 SELECIONADO!\r\n";
                     }
                 }
+
+
 
 
             }   /* -----------END------------ */
@@ -632,7 +637,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 1;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 1";
+                tb_instrucoes.Text += "Inicio modo 1\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -645,7 +650,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 2;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 2";
+                tb_instrucoes.Text += "Inicio modo 2\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -657,7 +662,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 3;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 3";
+                tb_instrucoes.Text += "Inicio modo 3\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -669,7 +674,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 4;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 4";
+                tb_instrucoes.Text += "Inicio modo 4\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -681,7 +686,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 5;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 5";
+                tb_instrucoes.Text += "Inicio modo 5\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -711,7 +716,7 @@ namespace Auto_click_atlas_2
         {
             if (cb_enable_btns.Checked && f_btn_record)
             {
-                tb_instrucoes.Text += "*** Pausa ***\r\n";
+                tb_instrucoes.Text += "- - - PAUSA - - -\r\n";
                 setInstructionList(x, y, '$');
             }
 
@@ -939,31 +944,35 @@ namespace Auto_click_atlas_2
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            tb_instrucoes.Text = "";  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
+            Array.Clear(Instrucoes_Global, instructionNumber, 1);
+            instructionQuantity--;
+            lb_instructions_quantity.Text = instructionQuantity.ToString();
 
-            Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
-            Array.Clear(Instrucoes_1, 0, Instrucoes_1.Length);
-            Array.Clear(Instrucoes_2, 0, Instrucoes_2.Length);
-            Array.Clear(Instrucoes_3, 0, Instrucoes_3.Length);
-            Array.Clear(Instrucoes_4, 0, Instrucoes_4.Length);
-            Array.Clear(Instrucoes_5, 0, Instrucoes_5.Length);
+            short lastLine_tb_instr = 0; 
+            tb_instrucoes.Text.IndexOf
 
-
-
-            instructionNumber = 0;
-            f_mode = 0;
-            instructionQuantity = 0;
-            lb_instructions_quantity.Text = "0";
+            tb_instrucoes.Text = tb_instrucoes.Text.Remove(3);
 
 
-            //Array.Clear(Instrucoes_Global, instructionNumber, 1);
+            if (false)
+            {
+                tb_instrucoes.Text = "";  //tb_instrucoes.Text.Remove((instructionNumber - 1) * 26, (instructionNumber - 1) * 30);
 
+                Array.Clear(Instrucoes_Global, 0, Instrucoes_Global.Length);
+                Array.Clear(Instrucoes_1, 0, Instrucoes_1.Length);
+                Array.Clear(Instrucoes_2, 0, Instrucoes_2.Length);
+                Array.Clear(Instrucoes_3, 0, Instrucoes_3.Length);
+                Array.Clear(Instrucoes_4, 0, Instrucoes_4.Length);
+                Array.Clear(Instrucoes_5, 0, Instrucoes_5.Length);
 
-            //instructionQuantity--;
-            //lb_instructions_quantity.Text = instructionQuantity.ToString();
+                instructionNumber = 0;
+                f_mode = 0;
+                instructionQuantity = 0;
+                lb_instructions_quantity.Text = "0";
+            }
         }
 
-        private void btn_compare_equal_Click(object sender, EventArgs e)
+        private void btn_compare_equal_Click_1(object sender, EventArgs e)
         {
             compara(tb_Consulta.Text, '=');
         }
@@ -1124,13 +1133,6 @@ namespace Auto_click_atlas_2
                 } while (line != null);
             }
         }
-
-        private void lb_currentMode_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

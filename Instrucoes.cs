@@ -6,7 +6,7 @@ public class Instrucoes
     public short X;
     public short Y;
     public char Key;
-
+    
     public Instrucoes(short X, short Y, char Key)
     {
         //this.Number = number;
