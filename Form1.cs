@@ -115,12 +115,12 @@ namespace Auto_click_atlas_2
 
         byte instructionQuantity = 0;
         byte instructionNumber = 0;
-        Instrucoes[] Instrucoes_Global = new Instrucoes[50];
-        Instrucoes[] Instrucoes_1 = new Instrucoes[50];
-        Instrucoes[] Instrucoes_2 = new Instrucoes[50];
-        Instrucoes[] Instrucoes_3 = new Instrucoes[50];
-        Instrucoes[] Instrucoes_4 = new Instrucoes[50];
-        Instrucoes[] Instrucoes_5 = new Instrucoes[50];
+        Instrucoes[] Instrucoes_Global = new Instrucoes[100];
+        Instrucoes[] Instrucoes_1 = new Instrucoes[100];
+        Instrucoes[] Instrucoes_2 = new Instrucoes[100];
+        Instrucoes[] Instrucoes_3 = new Instrucoes[100];
+        Instrucoes[] Instrucoes_4 = new Instrucoes[100];
+        Instrucoes[] Instrucoes_5 = new Instrucoes[100];
 
 
         /*      GLOBAL VARIABLES       */
@@ -176,7 +176,6 @@ namespace Auto_click_atlas_2
 
             m_Events.Dispose();
             m_Events = null;
-
         }
 
         public void PauseBlinking()
@@ -413,21 +412,15 @@ namespace Auto_click_atlas_2
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    // instructionQuantity++;
-                    //  lb_instructions_quantity.Text = instructionQuantity.ToString();
-                    InstructionQuantityIncrease();
-
-                    tb_instrucoes.Text += string.Format("Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
+                    tb_instrucoes.Text += string.Format("- Click L - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
                     setInstructionList(x, y, '¬');
-
+                    InstructionQuantityIncrease();
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    instructionQuantity++;
-                    lb_instructions_quantity.Text = instructionQuantity.ToString();
-
-                    tb_instrucoes.Text += string.Format("Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
+                    tb_instrucoes.Text += string.Format("- Click R - X: {0} - Y: {1}\r\n", tb_X.Text, tb_Y.Text);
                     setInstructionList(x, y, '¨');
+                    InstructionQuantityIncrease();
                 }
 
             }
@@ -637,7 +630,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 1;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 1\r\n";
+                tb_instrucoes.Text += "- Inicio modo 1\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -650,7 +643,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 2;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 2\r\n";
+                tb_instrucoes.Text += "- Inicio modo 2\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -662,7 +655,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 3;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 3\r\n";
+                tb_instrucoes.Text += "- Inicio modo 3\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -674,7 +667,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 4;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 4\r\n";
+                tb_instrucoes.Text += "- Inicio modo 4\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -686,7 +679,7 @@ namespace Auto_click_atlas_2
             {
                 f_mode = 5;
                 instructionNumber = 0;
-                tb_instrucoes.Text += "Inicio modo 5\r\n";
+                tb_instrucoes.Text += "- Inicio modo 5\r\n";
                 instructionQuantity++;
                 lb_instructions_quantity.Text = instructionQuantity.ToString();
             }
@@ -716,10 +709,9 @@ namespace Auto_click_atlas_2
         {
             if (cb_enable_btns.Checked && f_btn_record)
             {
-                tb_instrucoes.Text += "- - - PAUSA - - -\r\n";
+                tb_instrucoes.Text += "- # # PAUSA # #\r\n";
                 setInstructionList(x, y, '$');
             }
-
         }
 
         //private void btn_Select_Click(object sender, EventArgs e)
@@ -785,6 +777,7 @@ namespace Auto_click_atlas_2
                         tb_restante.Text = repeticoes.ToString();
                         tb_restante.Refresh();
 
+                        bool vazio = false;
                         do
                         {
                             //Instruction list global
@@ -792,15 +785,18 @@ namespace Auto_click_atlas_2
                             {
                                 lb_currentMode.Text = "STD".ToString();
 
+
+                                if (Instrucoes_Global[0] == null)
+                                {
+                                    Form frm = new Form { TopMost = true };
+                                    //MessageBox.Show("Nao há instrucoes a executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(new Form { TopMost = true }, "Nao há instrucoes para executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    vazio = true;
+                                    break;
+                                }
+
                                 if (Instrucoes_Global[i] == null || f_stop) //VERIFICA SE O ARRAY ESTA VAZIO
                                 {
-                                    if (Instrucoes_Global[0] == null)
-                                    {
-                                        Form frm = new Form { TopMost = true };
-                                        //MessageBox.Show("Nao há instrucoes a executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        MessageBox.Show(new Form { TopMost = true }, "Nao há instrucoes para executar!", "Auto Clicker - ATLAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        break;
-                                    }
                                     break;
                                 }
 
@@ -913,7 +909,7 @@ namespace Auto_click_atlas_2
 
                             tb_restante.Refresh();
 
-                        } while (repeticoes > 0 && !f_stop);
+                        } while (repeticoes > 0 && !f_stop && !vazio);
                     }
 
                     btn_Start.Text = "START (S)";
@@ -944,14 +940,19 @@ namespace Auto_click_atlas_2
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            Array.Clear(Instrucoes_Global, instructionNumber, 1);
+            tb_instrucoes.Text = tb_instrucoes.Text.LastIndexOf("\n").ToString();
+            Array.Clear(Instrucoes_Global, instructionNumber - 1, 1);
+
             instructionQuantity--;
             lb_instructions_quantity.Text = instructionQuantity.ToString();
 
-            short lastLine_tb_instr = 0; 
-            tb_instrucoes.Text.IndexOf
+            //short lastLine_tb_instr = 0;
 
-            tb_instrucoes.Text = tb_instrucoes.Text.Remove(3);
+            //input = input.Substring(0, input.LastIndexOf("/") + 1);
+            tb_instrucoes.Text = tb_instrucoes.Text.Substring(0, tb_instrucoes.Text.LastIndexOf("\n") + 1);
+
+
+            //tb_instrucoes.Text = tb_instrucoes.Text.Remove(3);
 
 
             if (false)
